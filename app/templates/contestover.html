@@ -1,0 +1,7 @@
+{% extends "contest.html" %}
+
+{% block password %}{{contest.password}}{% endblock %}
+{% block time %}Contest over{% endblock %}
+{% block content %}
+<p>See the <a href="/results/{{contest.id}}/{{contest.slug}}">results</a>.</p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "contest.html" %}
+
+{% block password %}{{contest.password}}{% endblock %}
+
+{% block content %}
+{% if puzzles %}
+  <ol>
+    {% for puzzle in puzzles %}
+    <li value="{{puzzle.number}}">{{puzzle.name}} ({{puzzle.points}} pts)</li>
+    {% endfor %}
+  </ol>
+{% else %}
+  <p>Erroneous contest, no puzzles included!</p>
+{% endif %}
+{% endblock %}

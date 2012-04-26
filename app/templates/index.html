@@ -1,0 +1,10 @@
+{% if contest_list %}
+  <dl>
+    {% for contest in contest_list %}
+    <dd><a href="/contest/{{contest.id}}/{{contest.slug}}">{{ contest.name }}</a></dd>
+    <dt>{{ contest.description }}</dd>
+    {% endfor %}
+  </dl>
+{% else %}
+  <p>No contests available.</p>
+{% endif %}
