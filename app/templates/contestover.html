@@ -1,7 +1,12 @@
 {% extends "contest.html" %}
+{% load i18n %}
 
 {% block password %}{{contest.password}}{% endblock %}
-{% block time %}Contest over{% endblock %}
+{% block time %}{% trans "Contest over" %}{% endblock %}
 {% block content %}
-<p>See the <a href="/results/{{contest.id}}/{{contest.slug}}">results</a>.</p>
+  <p>
+    <a href="/results/{{contest.id}}/{{contest.slug}}">
+      {% trans "See the results" %}
+    </a>.
+  </p>
 {% endblock %}

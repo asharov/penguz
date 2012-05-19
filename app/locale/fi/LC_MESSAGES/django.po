@@ -1,0 +1,73 @@
+# Penguz Finnish translation.
+# Copyright (C) 2012 Jaakko Kangasharju
+# This file is distributed under the same license as the Penguz package.
+# Jaakko Kangasharju <ashar+penguz@iki.fi>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Penguz 1.0\n"
+"Report-Msgid-Bugs-To: ashar+penguz@iki.fi\n"
+"POT-Creation-Date: 2012-05-20 00:02+0200\n"
+"PO-Revision-Date: 2012-05-20 00:25+0200\n"
+"Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/contest.html:5
+msgid "Contest period starts"
+msgstr "Kilpailuaika alkaa"
+
+#: templates/contest.html:6
+msgid "Contest period ends"
+msgstr "Kilpailuaika päättyy"
+
+#: templates/contest.html:9
+msgid "Instructions"
+msgstr "Ohjeet"
+
+#: templates/contest.html:11
+msgid "Instructions not yet available"
+msgstr "Ohjeet eivät ole vielä saatavilla"
+
+#: templates/contest.html:14
+msgid "Contest booklet"
+msgstr "Kilpailutehtävät"
+
+#: templates/contest.html:16
+msgid "Contest booklet not yet available"
+msgstr "Kilpailutehtävät eivät ole vielä saatavilla"
+
+#: templates/contest.html:18
+msgid "Password"
+msgstr "Salasana"
+
+#: templates/contest.html:20
+msgid "Will be revealed when you start"
+msgstr "Näytetään tässä aloitettuasi"
+
+#: templates/contest.html:22
+msgid "Time remaining"
+msgstr "Jäljellä oleva aika"
+
+#: templates/contestover.html:4
+msgid "Contest over"
+msgstr "Kilpailu ohi"
+
+#: templates/contestover.html:8
+msgid "See the results"
+msgstr "Tulokset"
+
+#: templates/contestrunning.html:9
+msgid "Submit answers"
+msgstr "Lähetä vastaukset"
+
+#: templates/conteststart.html:5
+msgid "Start contest"
+msgstr "Aloita kilpailu"
+
+#: templates/index.html:10
+msgid "No contests available."
+msgstr "Kilpailuja ei ole tällä palvelimella."

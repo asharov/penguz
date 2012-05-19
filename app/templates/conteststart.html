@@ -1,7 +1,9 @@
 {% extends "contest.html" %}
+{% load i18n %}
+
 {% block content %}
 <form action="/start/{{contest.id}}" method="post">
     {% csrf_token %}
-    <button name="start" type="submit">Start contest</button>
+    <button name="start" type="submit">{% trans "Start contest" %}</button>
 </form>
 {% endblock %}

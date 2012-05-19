@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if contest_list %}
   <dl>
     {% for contest in contest_list %}
@@ -6,5 +7,5 @@
     {% endfor %}
   </dl>
 {% else %}
-  <p>No contests available.</p>
+  <p>{% trans "No contests available." %}</p>
 {% endif %}

@@ -1,21 +1,25 @@
-<h1>{{contest.name}}</h1>
-<p>{{contest.description}}</p>
-<hr>
-Contest period starts: {{contest.start_time}}<br>
-Contest period ends: {{contest.end_time}}<br>
-<hr>
-	  {% if contest.instruction_booklet %}
-	  <a href="{{contest.instruction_booklet.url}}">Instructions</a>
-	  {% else %}
-	  Instructions not yet available
-	  {% endif %}<br>
-	  {% if contest.contest_booklet %}
-	  <a href="{{contest.contest_booklet.url}}">Contest booklet</a>
-	  {% else %}
-	  Contest booklet not yet available
-	  {% endif %}<br>
-Password: {% block password %}Will be revealed when you start{% endblock %}<br>
-Time remaining: {% block time %} <span
+{% load i18n %}
+  <h1>{{contest.name}}</h1>
+  <p>{{contest.description}}</p>
+  <hr>
+  {% trans "Contest period starts" %}: {{contest.start_time}}<br>
+  {% trans "Contest period ends" %}: {{contest.end_time}}<br>
+  <hr>
+  {% if contest.instruction_booklet %}
+  <a href="{{contest.instruction_booklet.url}}">{% trans "Instructions" %}</a>
+  {% else %}
+  {% trans "Instructions not yet available" %}
+  {% endif %}<br>
+  {% if contest.contest_booklet %}
+  <a href="{{contest.contest_booklet.url}}">{% trans "Contest booklet" %}</a>
+  {% else %}
+  {% trans "Contest booklet not yet available" %}
+  {% endif %}<br>
+  {% trans "Password" %}:
+	      {% block password %}
+	      {% trans "Will be revealed when you start" %}
+	      {% endblock %}<br>
+  {% trans "Time remaining" %}: {% block time %} <span
 	    id="min-remaining">{{contest.duration}}</span>:<span
 	    id="sec-remaining">00</span> {% endblock %}
 <hr>

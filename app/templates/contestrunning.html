@@ -1,4 +1,5 @@
 {% extends "contest.html" %}
+{% load i18n %}
 
 {% block password %}{{contest.password}}{% endblock %}
 
@@ -6,6 +7,6 @@
 <form action="/answer/{{contest.id}}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button name="answer" type="submit">Submit answers</button>
+    <button name="answer" type="submit">{% trans "Submit answers" %}</button>
 </form>
 {% endblock %}
