@@ -1,12 +1,35 @@
+from django import forms
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
+from penguz.app.forms import AnswerForm
 from datetime import datetime, timedelta
+import re
 
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
     return contest.end_time < now or (participation and participation[0].start_time + time < now)
+
+def set_answer(participation, key, answer):
+    try:
+        puzzle = Puzzle.objects.get(id=key)
+        score = 0
+        if puzzle.solution.lower() == answer.lower():
+            score = puzzle.points
+            print puzzle.solution, score
+            try:
+                ans = Answer.objects.get(participation=participation,
+                                         puzzle=puzzle)
+                ans.answer = answer
+                ans.score = score
+            except Answer.DoesNotExist:
+                ans = Answer(participation=participation,
+                             puzzle=puzzle, answer=answer,
+                             score=score)
+            ans.save()
+    except Puzzle.DoesNotExist:
+        pass
 
 def index(request):
     contest_list = Contest.objects.all()
@@ -21,8 +44,9 @@ def contest(request, contest_id):
         return render_to_response('contestover.html', { 'contest': contest })
     elif participation:
         puzzles = Puzzle.objects.filter(contest__exact=contest_id)
+        form = AnswerForm(puzzles=puzzles)
         return render_to_response('contestrunning.html', { 'contest': contest,
-                                                           'puzzles': puzzles },
+                                                           'form': form },
                                   context_instance=RequestContext(request))
     else:
         return render_to_response('conteststart.html', { 'contest': contest },
@@ -54,3 +78,23 @@ def results(request, contest_id):
     return render_to_response('results.html', { 'contest': contest,
                                                 'puzzles': puzzles,
                                                 'answers': answers })
+
+def answer(request, contest_id):
+    if request.method == 'POST':
+        contest = get_object_or_404(Contest, pk=contest_id)
+        puzzles = Puzzle.objects.filter(contest=contest.id)
+        form = AnswerForm(request.POST, puzzles=puzzles)
+        if form.is_valid():
+            print form.cleaned_data
+            participation = get_object_or_404(Participation, contest=contest.id,
+                                              user=request.user)
+            prefix = re.compile("^answer_(.+)$")
+            for key, answer in form.cleaned_data.items():
+                print key, answer
+                if len(answer) > 0:
+                    match = prefix.match(key)
+                    if match:
+                        set_answer(participation, match.group(1), answer)
+        return HttpResponseRedirect("/contest/{0}".format(contest.id))
+    else:
+        raise Http404

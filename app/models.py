@@ -60,6 +60,7 @@ class Puzzle(models.Model):
     points = models.IntegerField()
     solution = models.CharField(max_length=60)
     solution_row_count = models.PositiveIntegerField()
+    solution_row_names = models.CharField(max_length=120)
     solution_pattern = models.CharField(max_length=60)
 
     class Meta:
