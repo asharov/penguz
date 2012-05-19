@@ -57,13 +57,9 @@ def start(request, contest_id):
         contest = get_object_or_404(Contest, pk=contest_id)
         participation = Participation(user=request.user, contest=contest)
         participation.save()
-        return HttpResponseRedirect("/password/{0}".format(contest.id))
+        return HttpResponseRedirect("/contest/{0}".format(contest.id))
     else:
         raise Http404
-
-def password(request, contest_id):
-    contest = get_object_or_404(Contest, pk=contest_id)
-    return render_to_response('password.html', { 'contest': contest })
 
 def results(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
