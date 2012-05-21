@@ -1,11 +1,14 @@
+from datetime import datetime, timedelta
+import re
+
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.contrib.auth.decorators import user_passes_test
+
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
-from penguz.app.forms import AnswerForm
-from datetime import datetime, timedelta
-import re
+from penguz.app.forms import AnswerForm, ContestForm
 
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
@@ -33,7 +36,9 @@ def set_answer(participation, key, answer):
 
 def index(request):
     contest_list = Contest.objects.all()
-    return render_to_response('index.html', { 'contest_list': contest_list })
+    return render_to_response('index.html',
+                              { 'contest_list': contest_list,
+                                'creatable': request.user.has_perm('app.add_contest') })
 
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
@@ -107,3 +112,16 @@ def answer(request, contest_id):
         return HttpResponseRedirect("/contest/{0}".format(contest.id))
     else:
         raise Http404
+
+@user_passes_test(lambda u: u.has_perm('app.add_contest'))
+def create(request):
+    form = ContestForm(request.POST or None)
+    if form.is_valid():
+        contest = form.save(commit=False)
+        contest.organizer = request.user
+        contest.save()
+        return HttpResponseRedirect("/");
+    else:
+        return render_to_response("create.html",
+                                  { 'form': form },
+                                  context_instance=RequestContext(request))

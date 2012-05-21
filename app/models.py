@@ -36,9 +36,11 @@ class Contest(models.Model):
     slug = models.SlugField(max_length=120,editable=False)
     description = models.TextField()
     organizer = models.ForeignKey(User)
-    instruction_booklet = models.FileField(upload_to=generate_instrname)
-    contest_booklet = models.FileField(upload_to=generate_contestname)
-    password = models.CharField(max_length=80)
+    instruction_booklet = models.FileField(upload_to=generate_instrname,
+                                           blank=True)
+    contest_booklet = models.FileField(upload_to=generate_contestname,
+                                       blank=True)
+    password = models.CharField(max_length=80,blank=True)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     duration = models.IntegerField()

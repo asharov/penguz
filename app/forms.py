@@ -1,4 +1,6 @@
 from django import forms
+from django_countries import countries
+from penguz.app import models
 
 class AnswerWidget(forms.MultiWidget):
 
@@ -52,3 +54,13 @@ class AnswerForm(forms.Form):
             self.fields['answer_{0}'.format(puzzle.id)] = \
                 AnswerField(puzzle.solution_row_count, names, label=puzzle.name,
                             required=False)
+
+class ContestForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ContestForm, self).__init__(*args, **kwargs)
+        self.fields['start_time'] = forms.SplitDateTimeField()
+        self.fields['end_time'] = forms.SplitDateTimeField()
+
+    class Meta:
+        model = models.Contest
+        exclude = ('slug', 'organizer',)

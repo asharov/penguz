@@ -6,4 +6,5 @@ urlpatterns = patterns('app.views',
     url(r'^start/(?P<contest_id>\d+)$', 'start'),
     url(r'^results/(?P<contest_id>\d+)/', 'results'),
     url(r'^answer/(?P<contest_id>\d+)$', 'answer'),
+    url(r'^create/$', 'create'),
 )
