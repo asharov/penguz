@@ -6,7 +6,9 @@
 {% block content %}
 <form action="/answer/{{contest.id}}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <table>
+      {{ form.as_table }}
+    </table>
     <button name="answer" type="submit">{% trans "Submit answers" %}</button>
 </form>
 {% endblock %}
