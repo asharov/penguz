@@ -20,7 +20,7 @@
 	      {% trans "Will be revealed when you start" %}
 	      {% endblock %}<br>
   {% trans "Time remaining" %}: {% block time %} <span
-	    id="min-remaining">{{contest.duration}}</span>:<span
-	    id="sec-remaining">00</span> {% endblock %}
+	    id="min-remaining">{{minutes}}</span>:<span
+	    id="sec-remaining">{{seconds}}</span> {% endblock %}
 <hr>
 {% block content %}{% endblock %}

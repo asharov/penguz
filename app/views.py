@@ -38,19 +38,31 @@ def index(request):
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
-    if (datetime.now() < contest.start_time or
+    now = datetime.now()
+    if (now < contest.start_time or
         not request.user.is_authenticated()):
-        return render_to_response('contest.html', { 'contest': contest })
+        return render_to_response('contest.html',
+                                  { 'contest': contest,
+                                    'minutes': contest.duration,
+                                    'seconds': '00' })
     elif has_ended(datetime.now(), contest, participation):
         return render_to_response('contestover.html', { 'contest': contest })
     elif participation:
+        spent_time = (now - participation[0].start_time).total_seconds()
+        difference = int(contest.duration * 60 - spent_time)
         puzzles = Puzzle.objects.filter(contest__exact=contest_id)
         form = AnswerForm(puzzles=puzzles)
-        return render_to_response('contestrunning.html', { 'contest': contest,
-                                                           'form': form },
+        return render_to_response('contestrunning.html',
+                                  { 'contest': contest,
+                                    'form': form,
+                                    'minutes': difference / 60,
+                                    'seconds': '%02d' % (difference % 60) },
                                   context_instance=RequestContext(request))
     else:
-        return render_to_response('conteststart.html', { 'contest': contest },
+        return render_to_response('conteststart.html',
+                                  { 'contest': contest,
+                                    'minutes': contest.duration,
+                                    'seconds': '00' },
                                   context_instance=RequestContext(request))
 
 def start(request, contest_id):
