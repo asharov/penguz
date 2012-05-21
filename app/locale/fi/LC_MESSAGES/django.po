@@ -6,15 +6,55 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
-"Report-Msgid-Bugs-To: ashar+penguz@iki.fi\n"
-"POT-Creation-Date: 2012-05-20 00:02+0200\n"
-"PO-Revision-Date: 2012-05-20 00:25+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-22 00:37+0200\n"
+"PO-Revision-Date: 2012-05-22 00:41+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:36
+msgid "Contest name"
+msgstr "Kilpailun nimi"
+
+#: models.py:38
+msgid "Description"
+msgstr "Kuvaus"
+
+#: models.py:40
+msgid "Instruction booklet"
+msgstr "Ohjeet"
+
+#: models.py:43 templates/contest.html:14
+msgid "Contest booklet"
+msgstr "Kilpailutehtävät"
+
+#: models.py:46 templates/contest.html:18
+msgid "Password"
+msgstr "Salasana"
+
+#: models.py:47
+msgid "Contest start time"
+msgstr "Kilpailun alkamisaika"
+
+#: models.py:48
+msgid "Contest end time"
+msgstr "Kilpailun päättymisaika"
+
+#: models.py:49
+msgid "Contest duration in minutes"
+msgstr "Kilpailun kesto minuuteissa"
+
+#: models.py:50
+msgid "Contest country (if applicable)"
+msgstr "Kilpailumaa (jos tarpeen)"
+
+#: models.py:51
+msgid "Number of puzzles"
+msgstr "Tehtävien lukumäärä"
 
 #: templates/contest.html:5
 msgid "Contest period starts"
@@ -32,17 +72,9 @@ msgstr "Ohjeet"
 msgid "Instructions not yet available"
 msgstr "Ohjeet eivät ole vielä saatavilla"
 
-#: templates/contest.html:14
-msgid "Contest booklet"
-msgstr "Kilpailutehtävät"
-
 #: templates/contest.html:16
 msgid "Contest booklet not yet available"
 msgstr "Kilpailutehtävät eivät ole vielä saatavilla"
-
-#: templates/contest.html:18
-msgid "Password"
-msgstr "Salasana"
 
 #: templates/contest.html:20
 msgid "Will be revealed when you start"
@@ -52,22 +84,30 @@ msgstr "Näytetään tässä aloitettuasi"
 msgid "Time remaining"
 msgstr "Jäljellä oleva aika"
 
-#: templates/contestover.html:4
+#: templates/contestover.html:5
 msgid "Contest over"
 msgstr "Kilpailu ohi"
 
-#: templates/contestover.html:8
+#: templates/contestover.html:9
 msgid "See the results"
 msgstr "Tulokset"
 
-#: templates/contestrunning.html:9
+#: templates/contestrunning.html:12
 msgid "Submit answers"
 msgstr "Lähetä vastaukset"
 
-#: templates/conteststart.html:5
+#: templates/conteststart.html:7
 msgid "Start contest"
 msgstr "Aloita kilpailu"
+
+#: templates/create.html:7
+msgid "Create contest"
+msgstr "Luo kilpailu"
 
 #: templates/index.html:10
 msgid "No contests available."
 msgstr "Kilpailuja ei ole tällä palvelimella."
+
+#: templates/index.html:14
+msgid "Create a new contest"
+msgstr "Luo uusi kilpailu"

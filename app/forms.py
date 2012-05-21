@@ -56,11 +56,6 @@ class AnswerForm(forms.Form):
                             required=False)
 
 class ContestForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(ContestForm, self).__init__(*args, **kwargs)
-        self.fields['start_time'] = forms.SplitDateTimeField()
-        self.fields['end_time'] = forms.SplitDateTimeField()
-
     class Meta:
         model = models.Contest
         exclude = ('slug', 'organizer',)

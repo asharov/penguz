@@ -3,6 +3,7 @@ from django_countries import CountryField
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.utils.translation import ugettext_lazy as _
 
 def generate_instrname(instance, filename):
     return generate_filename(instance, "instructions")
@@ -32,20 +33,22 @@ def generate_filename(instance, suffix):
     return "{0}-{1}.pdf".format(instance.slug, suffix)
 
 class Contest(models.Model):
-    name = models.CharField(max_length=120)
+    name = models.CharField(_('Contest name'), max_length=120)
     slug = models.SlugField(max_length=120,editable=False)
-    description = models.TextField()
+    description = models.TextField(_('Description'))
     organizer = models.ForeignKey(User)
-    instruction_booklet = models.FileField(upload_to=generate_instrname,
+    instruction_booklet = models.FileField(_('Instruction booklet'),
+                                           upload_to=generate_instrname,
                                            blank=True)
-    contest_booklet = models.FileField(upload_to=generate_contestname,
+    contest_booklet = models.FileField(_('Contest booklet'),
+                                       upload_to=generate_contestname,
                                        blank=True)
-    password = models.CharField(max_length=80,blank=True)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    duration = models.IntegerField()
-    country = CountryField(blank=True)
-    puzzle_count = models.PositiveIntegerField()
+    password = models.CharField(_('Password'), max_length=80,blank=True)
+    start_time = models.DateTimeField(_('Contest start time'))
+    end_time = models.DateTimeField(_('Contest end time'))
+    duration = models.IntegerField(_('Contest duration in minutes'))
+    country = CountryField(_('Contest country (if applicable)'), blank=True)
+    puzzle_count = models.PositiveIntegerField(_('Number of puzzles'))
 
     class Meta:
         ordering = ["-start_time"]
