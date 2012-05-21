@@ -17,17 +17,17 @@ def set_answer(participation, key, answer):
         score = 0
         if puzzle.solution.lower() == answer.lower():
             score = puzzle.points
-            print puzzle.solution, score
-            try:
-                ans = Answer.objects.get(participation=participation,
-                                         puzzle=puzzle)
-                ans.answer = answer
-                ans.score = score
-            except Answer.DoesNotExist:
-                ans = Answer(participation=participation,
-                             puzzle=puzzle, answer=answer,
-                             score=score)
-            ans.save()
+        print puzzle.solution, score
+        try:
+            ans = Answer.objects.get(participation=participation,
+                                     puzzle=puzzle)
+            ans.answer = answer
+            ans.score = score
+        except Answer.DoesNotExist:
+            ans = Answer(participation=participation,
+                         puzzle=puzzle, answer=answer,
+                         score=score)
+        ans.save()
     except Puzzle.DoesNotExist:
         pass
 
