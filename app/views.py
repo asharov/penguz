@@ -38,7 +38,8 @@ def index(request):
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
-    if datetime.now() < contest.start_time:
+    if (datetime.now() < contest.start_time or
+        not request.user.is_authenticated()):
         return render_to_response('contest.html', { 'contest': contest })
     elif has_ended(datetime.now(), contest, participation):
         return render_to_response('contestover.html', { 'contest': contest })
