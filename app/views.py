@@ -35,7 +35,8 @@ def set_answer(participation, key, answer):
         pass
 
 def index(request):
-    contest_list = Contest.objects.all()
+    contests_with_puzzles = Puzzle.objects.all().values('contest').query
+    contest_list = Contest.objects.filter(id__in=contests_with_puzzles)
     return render_to_response('index.html',
                               { 'contest_list': contest_list,
                                 'creatable': request.user.has_perm('app.add_contest') })
