@@ -2,13 +2,15 @@ from datetime import datetime, timedelta
 import re
 
 from django import forms
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.forms.formsets import formset_factory
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.decorators import user_passes_test
+from django.utils.translation import ugettext as _
 
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
-from penguz.app.forms import AnswerForm, ContestForm
+from penguz.app.forms import AnswerForm, ContestForm, PuzzleForm
 
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
@@ -127,8 +129,34 @@ def create(request):
         contest = form.save(commit=False)
         contest.organizer = request.user
         contest.save()
-        return HttpResponseRedirect("/");
+        return HttpResponseRedirect("/addpuzzles/{0}".format(contest_id));
     else:
         return render_to_response("create.html",
                                   { 'form': form },
+                                  context_instance=RequestContext(request))
+
+def addpuzzles(request, contest_id):
+    contest = get_object_or_404(Contest, pk=contest_id)
+    if contest.organizer != request.user:
+        return HttpResponseForbidden(_("You are not allowed to edit this contest"))
+    PuzzleFormset = formset_factory(PuzzleForm, extra=contest.puzzle_count)
+    formset = PuzzleFormset(request.POST or None)
+    if formset.is_valid():
+        i = 1
+        for form in formset:
+            data = form.cleaned_data
+            print data
+            puzzle = form.save(commit=False)
+            puzzle.contest = contest
+            puzzle.number = i
+            puzzle.solution_pattern = "{0}-{1} {2}-{3}{4}".format(data['min_length'], data['max_length'], data['min_char'], data['max_char'], data['extra_chars'])
+            if data['pattern_unique']:
+                puzzle.solution_pattern += ' !'
+            puzzle.save()
+            i += 1
+        return HttpResponseRedirect("/")
+    else:
+        return render_to_response("addpuzzles.html",
+                                  { 'formset': formset,
+                                    'contest': contest },
                                   context_instance=RequestContext(request))

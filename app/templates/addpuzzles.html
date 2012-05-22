@@ -1,0 +1,14 @@
+{% load i18n %}
+  <form action="/addpuzzles/{{contest.id}}" method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+    <h3>
+      {% blocktrans with value=forloop.counter %}Puzzle {{ value }}{% endblocktrans %}
+    </h3>
+    <table>
+      {{ form.as_table }}
+    </table>
+    {% endfor %}
+    <button name="add" type="submit">{% trans "Set puzzles" %}</button>
+  </form>

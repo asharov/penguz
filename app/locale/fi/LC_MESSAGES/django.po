@@ -7,14 +7,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-22 00:37+0200\n"
-"PO-Revision-Date: 2012-05-22 00:41+0200\n"
+"POT-Creation-Date: 2012-05-23 00:00+0200\n"
+"PO-Revision-Date: 2012-05-23 00:01+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: forms.py:67
+msgid "Solution minimum length"
+msgstr "Ratkaisun minimipituus"
+
+#: forms.py:69
+msgid "Solution maximum length"
+msgstr "Ratkaisun maksimipituus"
+
+#: forms.py:71
+msgid "First allowed character"
+msgstr "Ensimmäinen sallittu merkki"
+
+#: forms.py:73
+msgid "Last allowed character"
+msgstr "Viimeinen sallittu merkki"
+
+#: forms.py:75
+msgid "Additional allowed characters"
+msgstr "Ylimääräiset sallitut merkit"
+
+#: forms.py:77
+msgid "No repetition"
+msgstr "Toisto kielletty"
+
+#: forms.py:89
+msgid "Minimum length must not be larger than maximum length"
+msgstr "Minimipituus ei saa olla maksimipituutta suurempi"
+
+#: forms.py:93
+msgid "First allowed character must come before the last allowed character"
+msgstr "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
 
 #: models.py:36
 msgid "Contest name"
@@ -55,6 +87,39 @@ msgstr "Kilpailumaa (jos tarpeen)"
 #: models.py:51
 msgid "Number of puzzles"
 msgstr "Tehtävien lukumäärä"
+
+#: models.py:64
+msgid "Puzzle name"
+msgstr "Tehtävän nimi"
+
+#: models.py:65
+msgid "Available points"
+msgstr "Saatavat pisteet"
+
+#: models.py:66
+msgid "Solution"
+msgstr "Ratkaisu"
+
+#: models.py:67
+msgid "Number of rows in solution"
+msgstr "Ratkaisun rivien määrä"
+
+#: models.py:68
+msgid "Names of solution rows"
+msgstr "Ratkaisun rivien nimet"
+
+#: views.py:141
+msgid "You are not allowed to edit this contest"
+msgstr "Et voi muokata tätä kilpailua"
+
+#: templates/addpuzzles.html:7
+#, python-format
+msgid "Puzzle %(value)s"
+msgstr "Tehtävä %(value)s"
+
+#: templates/addpuzzles.html:13
+msgid "Set puzzles"
+msgstr "Lisää tehtävät"
 
 #: templates/contest.html:5
 msgid "Contest period starts"

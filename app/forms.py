@@ -1,5 +1,8 @@
 from django import forms
 from django_countries import countries
+from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext as _
+
 from penguz.app import models
 
 class AnswerWidget(forms.MultiWidget):
@@ -59,3 +62,33 @@ class ContestForm(forms.ModelForm):
     class Meta:
         model = models.Contest
         exclude = ('slug', 'organizer',)
+
+class PuzzleForm(forms.ModelForm):
+    min_length = forms.IntegerField(label=ugettext_lazy('Solution minimum length'),
+                                    required=False)
+    max_length = forms.IntegerField(label=ugettext_lazy('Solution maximum length'),
+                                    required=False)
+    min_char = forms.CharField(label=ugettext_lazy('First allowed character'),
+                               max_length=1, required=False)
+    max_char = forms.CharField(label=ugettext_lazy('Last allowed character'),
+                               max_length=1, required=False)
+    extra_chars = forms.CharField(label=ugettext_lazy('Additional allowed characters'),
+                                  required=False)
+    pattern_unique = forms.BooleanField(label=ugettext_lazy('No repetition'),
+                                        required=False)
+
+    class Meta:
+        model = models.Puzzle
+        exclude = ('contest', 'number', 'solution_pattern')
+
+    def clean(self):
+        cleaned_data = super(PuzzleForm, self).clean()
+        min_length = cleaned_data.get('min_length')
+        max_length = cleaned_data.get('max_length')
+        if min_length and max_length and min_length > max_length:
+            raise forms.ValidationError(_('Minimum length must not be larger than maximum length'))
+        min_char = cleaned_data.get('min_char')
+        max_char = cleaned_data.get('max_char')
+        if min_char and max_char and min_char[0] > max_char[0]:
+            raise forms.ValidationError(_('First allowed character must come before the last allowed character'))
+        return cleaned_data

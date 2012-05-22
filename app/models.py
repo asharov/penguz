@@ -61,11 +61,11 @@ admin.site.register(Contest)
 class Puzzle(models.Model):
     contest = models.ForeignKey(Contest)
     number = models.PositiveIntegerField()
-    name = models.CharField(max_length=40)
-    points = models.IntegerField()
-    solution = models.CharField(max_length=60)
-    solution_row_count = models.PositiveIntegerField()
-    solution_row_names = models.CharField(max_length=120)
+    name = models.CharField(_('Puzzle name'), max_length=40)
+    points = models.IntegerField(_('Available points'))
+    solution = models.CharField(_('Solution'), max_length=60, blank=True)
+    solution_row_count = models.PositiveIntegerField(_('Number of rows in solution'))
+    solution_row_names = models.CharField(_('Names of solution rows'), max_length=120)
     solution_pattern = models.CharField(max_length=60)
 
     class Meta:
