@@ -83,16 +83,22 @@ def start(request, contest_id):
 def results(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participations = Participation.objects.filter(contest=contest.id)
-    puzzles = Puzzle.objects.filter(contest=contest.id)
-    answers = []
+    puzzles = list(Puzzle.objects.filter(contest=contest.id))
+    all_answers = []
     for participation in participations:
-        panswers = Answer.objects.filter(participation=participation.id)
-        if panswers:
+        answers = list(Answer.objects.filter(participation=participation.id))
+        if answers:
+            scores = []
+            for puzzle in puzzles:
+                if answers and answers[0].puzzle.id == puzzle.id:
+                    scores.append(answers.pop(0).score)
+                else:
+                    scores.append('-')
             profile = UserProfile.objects.get(user=participation.user)
-            answers.append({ 'profile': profile, 'answers': panswers })
+            all_answers.append({ 'profile': profile, 'scores': scores })
     return render_to_response('results.html', { 'contest': contest,
                                                 'puzzles': puzzles,
-                                                'answers': answers })
+                                                'answers': all_answers })
 
 def answer(request, contest_id):
     if request.method == 'POST':

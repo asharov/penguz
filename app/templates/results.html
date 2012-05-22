@@ -11,8 +11,8 @@
       <tr>
 	<td>{{answer.profile.user.get_full_name}}</td>
 	<td>{{answer.profile.country.name}}</td>
-	{% for an in answer.answers %}
-	<td>{{an.score}}</td>
+	{% for score in answer.scores %}
+	<td>{{score}}</td>
 	{% endfor %}
       </tr>
       {% endfor %}
