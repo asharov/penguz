@@ -13,29 +13,14 @@ def generate_contestname(instance, filename):
 
 def generate_filename(instance, suffix):
     if not instance.slug:
-        slug_field = instance._meta.get_field('slug')
-        slug_max_length = slug_field.max_length
-        slug = slugify(instance.name)
-        if (slug_max_length):
-            slug = slug[:slug_max_length]
-        slugs = [sl.values()[0] for sl in instance.__class__.objects.values('slug')]
-        if slug in slugs:
-            import re
-            counterFinder = re.compile(r'-\d+$')
-            counter = 1
-            slug = slug[:slug_max_length-10]
-            slug = "{0}-{1}".format(slug, counter)
-            while slug in slugs:
-                counter += 1
-                slug = re.sub(counterFinder, "-{0}".format(counter), slug)
-        instance.slug = slug
+        instance.slug = slugify(instance.name)
         instance.save()
     return "{0}-{1}.pdf".format(instance.slug, suffix)
 
 class Contest(models.Model):
     name = models.CharField(_('Contest name'), max_length=120)
-    slug = models.SlugField(max_length=120,editable=False)
-    description = models.TextField(_('Description'))
+    slug = models.SlugField(max_length=120)
+    description = models.TextField(_('Description'), blank=True)
     organizer = models.ForeignKey(User)
     instruction_booklet = models.FileField(_('Instruction booklet'),
                                            upload_to=generate_instrname,
@@ -55,6 +40,11 @@ class Contest(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Contest, self).save(*args, **kwargs)
 
 admin.site.register(Contest)
 

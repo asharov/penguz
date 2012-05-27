@@ -17,6 +17,9 @@ def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
     return contest.end_time < now or (participation and participation[0].start_time + time < now)
 
+def format_url(page, contest):
+    return "/{0}/{1}/{2}".format(page, contest.id, contest.slug)
+
 def set_answer(participation, key, answer):
     try:
         puzzle = Puzzle.objects.get(id=key)
@@ -79,7 +82,7 @@ def start(request, contest_id):
         contest = get_object_or_404(Contest, pk=contest_id)
         participation = Participation(user=request.user, contest=contest)
         participation.save()
-        return HttpResponseRedirect("/contest/{0}/".format(contest.id))
+        return HttpResponseRedirect(format_url("contest", contest))
     else:
         raise Http404
 
@@ -119,7 +122,7 @@ def answer(request, contest_id):
                     match = prefix.match(key)
                     if match:
                         set_answer(participation, match.group(1), answer)
-        return HttpResponseRedirect("/contest/{0}/".format(contest.id))
+        return HttpResponseRedirect(format_url("contest", contest))
     else:
         raise Http404
 
@@ -130,7 +133,7 @@ def create(request):
         contest = form.save(commit=False)
         contest.organizer = request.user
         contest.save()
-        return HttpResponseRedirect("/addpuzzles/{0}/".format(contest_id));
+        return HttpResponseRedirect(format_url("addpuzzles", contest))
     else:
         return render_to_response("create.html",
                                   { 'form': form },
