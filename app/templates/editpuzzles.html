@@ -1,5 +1,5 @@
 {% load i18n %}
-  <form action="/addpuzzles/{{contest.id}}/" method="post">
+  <form action="/editpuzzles/{{contest.id}}/" method="post">
     {% csrf_token %}
     {{ formset.management_form }}
     {% for form in formset %}
@@ -10,5 +10,5 @@
       {{ form.as_table }}
     </table>
     {% endfor %}
-    <button name="add" type="submit">{% trans "Set puzzles" %}</button>
+    <button name="edit" type="submit">{% trans "Submit changes" %}</button>
   </form>

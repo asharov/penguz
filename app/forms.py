@@ -92,3 +92,9 @@ class PuzzleForm(forms.ModelForm):
         if min_char and max_char and min_char[0] > max_char[0]:
             raise forms.ValidationError(_('First allowed character must come before the last allowed character'))
         return cleaned_data
+
+class ContestEditForm(forms.ModelForm):
+    class Meta:
+        model = models.Contest
+        fields = ('description', 'instruction_booklet', 'contest_booklet',
+                  'password', 'start_time', 'end_time',)

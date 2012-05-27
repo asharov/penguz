@@ -3,6 +3,7 @@ import re
 
 from django import forms
 from django.forms.formsets import formset_factory
+from django.forms.models import modelformset_factory
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -10,7 +11,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext as _
 
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
-from penguz.app.forms import AnswerForm, ContestForm, PuzzleForm
+from penguz.app.forms import AnswerForm, ContestForm, PuzzleForm, ContestEditForm
 
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
@@ -78,7 +79,7 @@ def start(request, contest_id):
         contest = get_object_or_404(Contest, pk=contest_id)
         participation = Participation(user=request.user, contest=contest)
         participation.save()
-        return HttpResponseRedirect("/contest/{0}".format(contest.id))
+        return HttpResponseRedirect("/contest/{0}/".format(contest.id))
     else:
         raise Http404
 
@@ -118,7 +119,7 @@ def answer(request, contest_id):
                     match = prefix.match(key)
                     if match:
                         set_answer(participation, match.group(1), answer)
-        return HttpResponseRedirect("/contest/{0}".format(contest.id))
+        return HttpResponseRedirect("/contest/{0}/".format(contest.id))
     else:
         raise Http404
 
@@ -129,7 +130,7 @@ def create(request):
         contest = form.save(commit=False)
         contest.organizer = request.user
         contest.save()
-        return HttpResponseRedirect("/addpuzzles/{0}".format(contest_id));
+        return HttpResponseRedirect("/addpuzzles/{0}/".format(contest_id));
     else:
         return render_to_response("create.html",
                                   { 'form': form },
@@ -160,3 +161,32 @@ def addpuzzles(request, contest_id):
                                   { 'formset': formset,
                                     'contest': contest },
                                   context_instance=RequestContext(request))
+
+def edit(request, contest_id):
+    contest = get_object_or_404(Contest, pk=contest_id)
+    if contest.organizer != request.user:
+        return HttpResponseForbidden(_("You are not allowed to edit this contest"))
+    form = ContestEditForm(request.POST or None, instance=contest)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/")
+    return render_to_response('edit.html',
+                              { 'form': form,
+                                'contest': contest },
+                              context_instance=RequestContext(request))
+
+def editpuzzles(request, contest_id):
+    contest = get_object_or_404(Contest, pk=contest_id)
+    if contest.organizer != request.user:
+        return HttpResponseForbidden(_("You are not allowed to edit this contest"))
+    puzzles = Puzzle.objects.filter(contest=contest.id)
+    PuzzleEditFormset = modelformset_factory(Puzzle, extra=0,
+                                             fields = ('points', 'solution',))
+    formset = PuzzleEditFormset(request.POST or None, queryset=puzzles)
+    if request.POST and formset.is_valid():
+        formset.save()
+        return HttpResponseRedirect("/")
+    return render_to_response("editpuzzles.html",
+                              { 'formset': formset,
+                                'contest': contest },
+                              context_instance=RequestContext(request))

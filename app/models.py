@@ -62,7 +62,7 @@ class Puzzle(models.Model):
     contest = models.ForeignKey(Contest)
     number = models.PositiveIntegerField()
     name = models.CharField(_('Puzzle name'), max_length=40)
-    points = models.IntegerField(_('Available points'))
+    points = models.IntegerField(_('Available points'), blank=True)
     solution = models.CharField(_('Solution'), max_length=60, blank=True)
     solution_row_count = models.PositiveIntegerField(_('Number of rows in solution'))
     solution_row_names = models.CharField(_('Names of solution rows'), max_length=120)

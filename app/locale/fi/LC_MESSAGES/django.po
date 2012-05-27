@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-23 00:00+0200\n"
-"PO-Revision-Date: 2012-05-23 00:01+0200\n"
+"POT-Creation-Date: 2012-05-27 22:02+0200\n"
+"PO-Revision-Date: 2012-05-27 22:02+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,8 @@ msgstr "Minimipituus ei saa olla maksimipituutta suurempi"
 
 #: forms.py:93
 msgid "First allowed character must come before the last allowed character"
-msgstr "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
+msgstr ""
+"Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
 
 #: models.py:36
 msgid "Contest name"
@@ -108,11 +109,11 @@ msgstr "Ratkaisun rivien määrä"
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
-#: views.py:141
+#: views.py:142 views.py:168 views.py:181
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
-#: templates/addpuzzles.html:7
+#: templates/addpuzzles.html:7 templates/editpuzzles.html:7
 #, python-format
 msgid "Puzzle %(value)s"
 msgstr "Tehtävä %(value)s"
@@ -168,6 +169,10 @@ msgstr "Aloita kilpailu"
 #: templates/create.html:7
 msgid "Create contest"
 msgstr "Luo kilpailu"
+
+#: templates/edit.html:7 templates/editpuzzles.html:13
+msgid "Submit changes"
+msgstr "Lähetä muutokset"
 
 #: templates/index.html:10
 msgid "No contests available."

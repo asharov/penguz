@@ -1,0 +1,8 @@
+{% load i18n %}
+  <form action="/edit/{{contest.id}}/" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button name="edit" type="submit">{% trans "Submit changes" %}</button>
+  </form>
