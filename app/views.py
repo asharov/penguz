@@ -57,7 +57,12 @@ def contest(request, contest_id):
                                   { 'contest': contest,
                                     'minutes': contest.duration,
                                     'seconds': '00' })
-    elif has_ended(datetime.now(), contest, participation):
+    elif contest.organizer == request.user:
+        return render_to_response('contestauthor.html',
+                                  { 'contest': contest,
+                                    'minutes': contest.duration,
+                                    'seconds': '00' })
+    elif has_ended(now, contest, participation):
         return render_to_response('contestover.html', { 'contest': contest })
     elif participation:
         spent_time = (now - participation[0].start_time).total_seconds()
