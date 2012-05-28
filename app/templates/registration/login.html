@@ -1,0 +1,11 @@
+{% load url from future %}
+{% load i18n %}
+
+  <form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="hidden" name="next" value="{% url 'app.views.index' %}"/>
+      <button name="login" type="submit">{% trans "Log in" %}</button>
+  </form>
