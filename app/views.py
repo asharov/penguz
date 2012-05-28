@@ -133,10 +133,14 @@ def answer(request, contest_id):
 
 @user_passes_test(lambda u: u.has_perm('app.add_contest'))
 def create(request):
-    form = ContestForm(request.POST or None)
+    form = ContestForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         contest = form.save(commit=False)
         contest.organizer = request.user
+        if 'instruction_booklet' in request.FILES:
+            contest.instruction_booklet = request.FILES['instruction_booklet']
+        if 'contest_booklet' in request.FILES:
+            contest.contest_booklet = request.FILES['contest_booklet']
         contest.save()
         return HttpResponseRedirect(format_url("addpuzzles", contest))
     else:
@@ -174,9 +178,15 @@ def edit(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     if contest.organizer != request.user:
         return HttpResponseForbidden(_("You are not allowed to edit this contest"))
-    form = ContestEditForm(request.POST or None, instance=contest)
+    form = ContestEditForm(request.POST or None, request.FILES or None,
+                           instance=contest)
     if request.POST and form.is_valid():
-        form.save()
+        contest = form.save(commit=False)
+        if 'instruction_booklet' in request.FILES:
+            contest.instruction_booklet = request.FILES['instruction_booklet']
+        if 'contest_booklet' in request.FILES:
+            contest.contest_booklet = request.FILES['contest_booklet']
+        contest.save()
         return HttpResponseRedirect("/")
     return render_to_response('edit.html',
                               { 'form': form,
