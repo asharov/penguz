@@ -2,16 +2,19 @@ from datetime import datetime, timedelta
 import re
 
 from django import forms
+from django.core.urlresolvers import reverse
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext as _
 
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
-from penguz.app.forms import AnswerForm, ContestForm, PuzzleForm, ContestEditForm
+from penguz.app.forms import RegisterForm, AnswerForm, ContestForm, PuzzleForm, ContestEditForm
 
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
@@ -46,6 +49,23 @@ def index(request):
     return render_to_response('index.html',
                               { 'contest_list': contest_list,
                                 'creatable': request.user.has_perm('app.add_contest') })
+
+def register(request):
+    form = RegisterForm(request.POST or None)
+    if form.is_valid():
+        data = form.cleaned_data
+        if not User.objects.filter(username=data['username']).exists():
+            form.save()
+            new_user = authenticate(username=data['username'],
+                                    password=data['password'])
+            if new_user is not None:
+                login(request, new_user)
+                return HttpResponseRedirect(reverse('app.views.index'))
+        else:
+            form._errors['username'] = [_('Username already exists')]
+    return render_to_response('registration/register.html',
+                              { 'form': form },
+                              context_instance=RequestContext(request))
 
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)

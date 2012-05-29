@@ -2,8 +2,46 @@ from django import forms
 from django_countries import countries
 from django.utils.translation import ugettext_lazy
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
 
 from penguz.app import models
+
+class RegisterForm(forms.Form):
+    username = forms.CharField(label=ugettext_lazy('Username'), max_length=30)
+    email = forms.EmailField(label=ugettext_lazy('Email address'),
+                             max_length=80)
+    name = forms.CharField(label=ugettext_lazy('Full name'), max_length=80,
+                           required=False)
+    country = forms.ChoiceField(label=ugettext_lazy('Nationality'),
+                                choices=[('', '----')] + countries.COUNTRIES,
+                                required=False)
+    password = forms.CharField(label=ugettext_lazy('Password'), max_length=60,
+                               widget=forms.PasswordInput)
+    repeat_password = forms.CharField(label=ugettext_lazy('Confirm password'),
+                                      max_length=60, widget=forms.PasswordInput)
+    organizer = forms.BooleanField(label=ugettext_lazy('Request to be contest organizer'),
+                                   required=False)
+
+    def clean(self):
+        cleaned_data = super(RegisterForm, self).clean()
+        password = cleaned_data.get('password')
+        repeat_password = cleaned_data.get('repeat_password')
+        if password and repeat_password and password != repeat_password:
+            raise forms.ValidationError(_('Passwords do not match'))
+        return cleaned_data
+
+    def save(self):
+        data = self.cleaned_data
+        user = User.objects.create_user(data['username'], data['email'],
+                                        data['password'])
+        user.first_name = data.get('name')
+        if not user.first_name:
+            user.first_name = user.username
+        profile = models.UserProfile(user=user, country=data.get('country'))
+        if data.get('organizer'):
+            print "ORGANIZER REQUEST", user.username
+        user.save()
+        profile.save()
 
 class AnswerWidget(forms.MultiWidget):
 
