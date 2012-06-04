@@ -140,13 +140,15 @@ def answer(request, contest_id):
             print form.cleaned_data
             participation = get_object_or_404(Participation, contest=contest.id,
                                               user=request.user)
-            prefix = re.compile("^answer_(.+)$")
-            for key, answer in form.cleaned_data.items():
-                print key, answer
-                if len(answer) > 0:
-                    match = prefix.match(key)
-                    if match:
-                        set_answer(participation, match.group(1), answer)
+            if not has_ended(datetime.now(), contest, [participation]):
+                prefix = re.compile("^answer_(.+)$")
+                for key, answer in form.cleaned_data.items():
+                    print key, answer
+                    if len(answer) > 0:
+                        match = prefix.match(key)
+                        if match:
+                            set_answer(participation, match.group(1), answer)
+                participation.save()
         return HttpResponseRedirect(format_url("contest", contest))
     else:
         raise Http404
