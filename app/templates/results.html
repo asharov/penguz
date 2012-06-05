@@ -1,4 +1,7 @@
-<h1>{{contest.name}}</h1>
+{% extends "pagebody.html" %}
+
+{% block pagecontent %}
+<h2>{{contest.name}}</h2>
   <table>
     <thead>
       <tr>
@@ -18,3 +21,4 @@
       {% endfor %}
     </tbody>
   </table>
+{% endblock %}

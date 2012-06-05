@@ -1,5 +1,8 @@
+{% extends "pagebody.html" %}
 {% load i18n %}
-  <h1>{{contest.name}}</h1>
+
+{% block pagecontent %}
+  <h2>{{contest.name}}</h2>
   <p>{{contest.description}}</p>
   <hr>
   {% trans "Contest period starts" %}: {{contest.start_time}}<br>
@@ -22,5 +25,5 @@
   {% trans "Time remaining" %}: {% block time %} <span
 	    id="min-remaining">{{minutes}}</span>:<span
 	    id="sec-remaining">{{seconds}}</span> {% endblock %}
-<hr>
 {% block content %}{% endblock %}
+{% endblock %}

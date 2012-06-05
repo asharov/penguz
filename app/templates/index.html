@@ -1,4 +1,7 @@
+{% extends "pagebody.html" %}
 {% load i18n %}
+
+{% block pagecontent %}
 {% if contest_list %}
   <dl>
     {% for contest in contest_list %}
@@ -14,3 +17,4 @@
     <a href="/create/">{% trans "Create a new contest" %}</a>
   </p>
 {% endif %}
+{% endblock %}

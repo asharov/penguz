@@ -1,4 +1,7 @@
+{% extends "pagebody.html" %}
 {% load i18n %}
+
+{% block pagecontent %}
   <form action="/editpuzzles/{{contest.id}}/" method="post">
     {% csrf_token %}
     {{ formset.management_form }}
@@ -12,3 +15,4 @@
     {% endfor %}
     <button name="edit" type="submit">{% trans "Submit changes" %}</button>
   </form>
+{% endblock %}

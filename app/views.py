@@ -48,7 +48,8 @@ def index(request):
     contest_list = Contest.objects.filter(id__in=contests_with_puzzles)
     return render_to_response('index.html',
                               { 'contest_list': contest_list,
-                                'creatable': request.user.has_perm('app.add_contest') })
+                                'creatable': request.user.has_perm('app.add_contest') },
+                              context_instance=RequestContext(request))
 
 def register(request):
     form = RegisterForm(request.POST or None)
@@ -76,14 +77,17 @@ def contest(request, contest_id):
         return render_to_response('contest.html',
                                   { 'contest': contest,
                                     'minutes': contest.duration,
-                                    'seconds': '00' })
+                                    'seconds': '00' },
+                                  context_instance=RequestContext(request))
     elif contest.organizer == request.user:
         return render_to_response('contestauthor.html',
                                   { 'contest': contest,
                                     'minutes': contest.duration,
-                                    'seconds': '00' })
+                                    'seconds': '00' },
+                                  context_instance=RequestContext(request))
     elif has_ended(now, contest, participation):
-        return render_to_response('contestover.html', { 'contest': contest })
+        return render_to_response('contestover.html', { 'contest': contest },
+                                  context_instance=RequestContext(request))
     elif participation:
         spent_time = (now - participation[0].start_time).total_seconds()
         difference = int(contest.duration * 60 - spent_time)
@@ -129,7 +133,8 @@ def results(request, contest_id):
             all_answers.append({ 'profile': profile, 'scores': scores })
     return render_to_response('results.html', { 'contest': contest,
                                                 'puzzles': puzzles,
-                                                'answers': all_answers })
+                                                'answers': all_answers },
+                              context_instance=RequestContext(request))
 
 def answer(request, contest_id):
     if request.method == 'POST':

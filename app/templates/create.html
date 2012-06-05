@@ -1,4 +1,7 @@
+{% extends "pagebody.html" %}
 {% load i18n %}
+
+{% block pagecontent %}
   <form action="/create/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
@@ -6,3 +9,4 @@
     </table>
     <button name="create" type="submit">{% trans "Create contest" %}</button>
   </form>
+{% endblock %}

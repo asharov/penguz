@@ -1,4 +1,7 @@
+{% extends "pagebody.html" %}
 {% load i18n %}
+
+{% block pagecontent %}
   <form action="/edit/{{contest.id}}/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
@@ -6,3 +9,4 @@
     </table>
     <button name="edit" type="submit">{% trans "Submit changes" %}</button>
   </form>
+{% endblock %}
