@@ -1,0 +1,22 @@
+.page-top {
+    background-color: DeepSkyBlue;
+    color: White;
+}
+
+.page-top h1 {
+    text-align: center;
+    padding: 0.3em 0 0.1em 0;
+}
+
+.page-top p {
+    font-size: small;
+}
+
+.login-area {
+    text-align: right;
+    padding: 0 1.5em 0.5em 0;
+}
+
+.extra-information {
+    font-size: x-small;
+}

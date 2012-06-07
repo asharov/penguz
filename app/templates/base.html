@@ -1,7 +1,10 @@
+{% load staticfiles %}
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
     <title>{% block pagetitle %}Penguz{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'penguz.css' %}" type="text/css"/>
   </head>
 
   <body>

@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block pagebody %}
+  <div class="page-top">
   <h1>{% block pagetitle %}Penguz{% endblock %}</h1>
 
   {% block loginarea %}
@@ -14,6 +15,7 @@
     {% endif %}
   </p>
   {% endblock %}
+  </div>
   <hr>
 
   {% block pagecontent %}
