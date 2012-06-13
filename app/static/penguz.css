@@ -17,6 +17,10 @@
     padding: 0 1.5em 0.5em 0;
 }
 
+.username {
+    color: Black;
+}
+
 .extra-information {
     font-size: x-small;
 }
