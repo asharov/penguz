@@ -4,7 +4,7 @@
 {% block pagecontent %}
   <form action="/edit/{{contest.id}}/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <table>
+    <table class="form">
       {{ form.as_table }}
     </table>
     <button name="edit" type="submit">{% trans "Submit changes" %}</button>

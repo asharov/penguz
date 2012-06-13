@@ -4,7 +4,7 @@
 {% block pagecontent %}
   <form action="/create/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <table>
+    <table class="form">
       {{ form.as_table }}
     </table>
     <button name="create" type="submit">{% trans "Create contest" %}</button>

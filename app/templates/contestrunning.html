@@ -7,7 +7,7 @@
 <hr>
 <form action="/answer/{{contest.id}}/" method="post">
     {% csrf_token %}
-    <table>
+    <table class="form">
       {{ form.as_table }}
     </table>
     <button name="answer" type="submit">{% trans "Submit answers" %}</button>

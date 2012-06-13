@@ -5,7 +5,7 @@
 {% block pagecontent %}
   <form action="{% url app.views.register %}" method="post">
     {% csrf_token %}
-    <table>
+    <table class="form">
       {{ form.as_table }}
     </table>
     <button name="register" type="submit">{% trans "Register" %}</button>

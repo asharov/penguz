@@ -2,7 +2,7 @@
 
 {% block pagecontent %}
 <h2>{{contest.name}}</h2>
-  <table>
+  <table class="list">
     <thead>
       <tr>
 	<th>Name</th><th>Country</th><th>Score</th><th>Time</th>
@@ -12,12 +12,12 @@
     <tbody>
       {% for answer in answers %}
       <tr>
-	<td>{{answer.profile.user.get_full_name}}</td>
-	<td>{{answer.profile.country.name}}</td>
-	<td>{{answer.total_score}}</td>
-	<td>{{answer.spent_minutes}}:{{answer.spent_seconds}}</td>
+	<td style="text-align: left;">{{answer.profile.user.get_full_name}}</td>
+	<td style="text-align: center;">{{answer.profile.country.name}}</td>
+	<td style="text-align: right;">{{answer.total_score}}</td>
+	<td style="text-align: right;">{{answer.spent_minutes}}:{{answer.spent_seconds}}</td>
 	{% for score in answer.scores %}
-	<td>{{score}}</td>
+	<td style="text-align: right;">{{score}}</td>
 	{% endfor %}
       </tr>
       {% endfor %}
