@@ -15,7 +15,7 @@ def generate_filename(instance, suffix):
     if not instance.slug:
         instance.slug = slugify(instance.name)
         instance.save()
-    return "{0}-{1}.pdf".format(instance.slug, suffix)
+    return u"{0}-{1}.pdf".format(instance.slug, suffix)
 
 class Contest(models.Model):
     name = models.CharField(_('Contest name'), max_length=120)
@@ -73,7 +73,7 @@ class Participation(models.Model):
     last_submission = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return "{0} at {1}".format(self.user.get_full_name(),
+        return u"{0} at {1}".format(self.user.get_full_name(),
                                    self.contest.name)
 
 admin.site.register(Participation)
@@ -88,7 +88,7 @@ class Answer(models.Model):
         ordering = ["puzzle"]
 
     def __unicode__(self):
-        return "Answer of {0} to {1}".format(self.participation.user.get_full_name(),
+        return u"Answer of {0} to {1}".format(self.participation.user.get_full_name(),
                                              self.puzzle.name)
     
 admin.site.register(Answer)
