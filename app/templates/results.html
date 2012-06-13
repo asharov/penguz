@@ -5,7 +5,7 @@
   <table>
     <thead>
       <tr>
-	<th>Name</th><th>Country</th>
+	<th>Name</th><th>Country</th><th>Score</th><th>Time</th>
 	{% for puzzle in puzzles %}<th>{{puzzle.number}}</th>{% endfor %}
       </tr>
     </thead>
@@ -14,6 +14,8 @@
       <tr>
 	<td>{{answer.profile.user.get_full_name}}</td>
 	<td>{{answer.profile.country.name}}</td>
+	<td>{{answer.total_score}}</td>
+	<td>{{answer.spent_minutes}}:{{answer.spent_seconds}}</td>
 	{% for score in answer.scores %}
 	<td>{{score}}</td>
 	{% endfor %}

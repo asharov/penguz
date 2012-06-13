@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from operator import itemgetter
 import re
 
 from django import forms
@@ -124,13 +125,24 @@ def results(request, contest_id):
         answers = list(Answer.objects.filter(participation=participation.id))
         if answers:
             scores = []
+            total_score = 0
             for puzzle in puzzles:
                 if answers and answers[0].puzzle.id == puzzle.id:
-                    scores.append(answers.pop(0).score)
+                    score = answers.pop(0).score
+                    scores.append(score)
+                    total_score += score;
                 else:
                     scores.append('-')
+            spent_time = int((participation.last_submission
+                              - participation.start_time).total_seconds())
             profile = UserProfile.objects.get(user=participation.user)
-            all_answers.append({ 'profile': profile, 'scores': scores })
+            all_answers.append({ 'profile': profile,
+                                 'spent_minutes': spent_time / 60,
+                                 'spent_seconds': "%02d" % (spent_time % 60),
+                                 'total_score': total_score,
+                                 'scores': scores })
+    all_answers.sort(key=itemgetter('spent_minutes','spent_seconds'))
+    all_answers.sort(key=itemgetter('total_score'), reverse=True)
     return render_to_response('results.html', { 'contest': contest,
                                                 'puzzles': puzzles,
                                                 'answers': all_answers },
