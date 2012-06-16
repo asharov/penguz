@@ -13,3 +13,9 @@
     <button name="answer" type="submit">{% trans "Submit answers" %}</button>
 </form>
 {% endblock %}
+
+{% block pagescript %}
+$(function() {
+    fi.iki.ashar.Penguz.startRemainingUpdates((new Date()).getTime());
+});
+{% endblock %}
