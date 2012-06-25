@@ -61,11 +61,15 @@ class AnswerWidget(forms.MultiWidget):
             return [''] * self.size
 
     def format_output(self, rendered_widgets):
-        result = u''
+        result = u'<table>'
         i = 0
         for widget in rendered_widgets:
-            result += self.names[i] + widget
+            result += u'<tr>'
+            result += u'<td>' + self.names[i] +  u'</td>'
+            result += u'<td>' + widget + u'</td>'
+            result += u'</tr>'
             i += 1
+        result += u'</table>'
         return result
 
 class AnswerField(forms.MultiValueField):
