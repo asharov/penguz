@@ -145,7 +145,8 @@ def results(request, contest_id):
     all_answers.sort(key=itemgetter('total_score'), reverse=True)
     return render_to_response('results.html', { 'contest': contest,
                                                 'puzzles': puzzles,
-                                                'answers': all_answers },
+                                                'answers': all_answers,
+                                                'show_email': contest.organizer == request.user },
                               context_instance=RequestContext(request))
 
 def answer(request, contest_id):

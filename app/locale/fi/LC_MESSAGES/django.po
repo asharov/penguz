@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-29 22:46+0200\n"
-"PO-Revision-Date: 2012-05-29 22:47+0200\n"
+"POT-Creation-Date: 2012-06-25 22:20+0200\n"
+"PO-Revision-Date: 2012-06-25 22:20+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Koko nimi"
 msgid "Nationality"
 msgstr "Kansalaisuus"
 
-#: forms.py:18 models.py:31 templates/contest.html:18
+#: forms.py:18 models.py:31 templates/contest.html:21
 msgid "Password"
 msgstr "Salasana"
 
@@ -93,7 +93,7 @@ msgstr "Kuvaus"
 msgid "Instruction booklet"
 msgstr "Ohjeet"
 
-#: models.py:28 templates/contest.html:14
+#: models.py:28 templates/contest.html:17
 msgid "Contest booklet"
 msgstr "Kilpailutehtävät"
 
@@ -137,48 +137,48 @@ msgstr "Ratkaisun rivien määrä"
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
-#: views.py:65
+#: views.py:67
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:174 views.py:200 views.py:219
+#: views.py:194 views.py:220 views.py:239
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
-#: templates/addpuzzles.html:7 templates/editpuzzles.html:7
+#: templates/addpuzzles.html:10 templates/editpuzzles.html:10
 #, python-format
 msgid "Puzzle %(value)s"
 msgstr "Tehtävä %(value)s"
 
-#: templates/addpuzzles.html:13
+#: templates/addpuzzles.html:16
 msgid "Set puzzles"
 msgstr "Lisää tehtävät"
 
-#: templates/contest.html:5
+#: templates/contest.html:8
 msgid "Contest period starts"
 msgstr "Kilpailuaika alkaa"
 
-#: templates/contest.html:6
+#: templates/contest.html:9
 msgid "Contest period ends"
 msgstr "Kilpailuaika päättyy"
 
-#: templates/contest.html:9
+#: templates/contest.html:12
 msgid "Instructions"
 msgstr "Ohjeet"
 
-#: templates/contest.html:11
+#: templates/contest.html:14
 msgid "Instructions not yet available"
 msgstr "Ohjeet eivät ole vielä saatavilla"
 
-#: templates/contest.html:16
+#: templates/contest.html:19
 msgid "Contest booklet not yet available"
 msgstr "Kilpailutehtävät eivät ole vielä saatavilla"
 
-#: templates/contest.html:20
+#: templates/contest.html:23
 msgid "Will be revealed when you start"
 msgstr "Näytetään tässä aloitettuasi"
 
-#: templates/contest.html:22
+#: templates/contest.html:25
 msgid "Time remaining"
 msgstr "Jäljellä oleva aika"
 
@@ -190,7 +190,7 @@ msgstr "Tulokset"
 msgid "Contest over"
 msgstr "Kilpailu ohi"
 
-#: templates/contestrunning.html:12
+#: templates/contestrunning.html:13
 msgid "Submit answers"
 msgstr "Lähetä vastaukset"
 
@@ -198,26 +198,50 @@ msgstr "Lähetä vastaukset"
 msgid "Start contest"
 msgstr "Aloita kilpailu"
 
-#: templates/create.html:7
+#: templates/create.html:10
 msgid "Create contest"
 msgstr "Luo kilpailu"
 
-#: templates/edit.html:7 templates/editpuzzles.html:13
+#: templates/edit.html:10 templates/editpuzzles.html:16
 msgid "Submit changes"
 msgstr "Lähetä muutokset"
 
-#: templates/index.html:10
+#: templates/index.html:13
 msgid "No contests available."
 msgstr "Kilpailuja ei ole tällä palvelimella."
 
-#: templates/index.html:14
+#: templates/index.html:17
 msgid "Create a new contest"
 msgstr "Luo uusi kilpailu"
 
-#: templates/registration/login.html:10
+#: templates/pagebody.html:12
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+#: templates/pagebody.html:14 templates/registration/login.html:12
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-#: templates/registration/register.html:9
+#: templates/pagebody.html:15 templates/registration/register.html:11
 msgid "Register"
 msgstr "Rekisteröidy"
+
+#: templates/results.html:9
+msgid "Name"
+msgstr "Nimi"
+
+#: templates/results.html:10
+msgid "Country"
+msgstr "Maa"
+
+#: templates/results.html:12
+msgid "Email"
+msgstr "Sähköposti"
+
+#: templates/results.html:14
+msgid "Score"
+msgstr "Pisteet"
+
+#: templates/results.html:15
+msgid "Time"
+msgstr "Aika"
