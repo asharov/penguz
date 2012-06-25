@@ -3,34 +3,11 @@
 
 {% block pagecontent %}
 <h2>{{contest.name}}</h2>
-  <table class="list">
-    <thead>
-      <tr>
-	<th>{% trans "Name" %}</th>
-	<th>{% trans "Country" %}</th>
-	{% if show_email %}
-	<th>{% trans "Email" %}</th>
-	{% endif %}
-	<th>{% trans "Score" %}</th>
-	<th>{% trans "Time" %}</th>
-	{% for puzzle in puzzles %}<th>{{puzzle.number}}</th>{% endfor %}
-      </tr>
-    </thead>
-    <tbody>
-      {% for answer in answers %}
-      <tr>
-	<td style="text-align: left;">{{answer.profile.user.get_full_name}}</td>
-	<td style="text-align: center;">{{answer.profile.country.name}}</td>
-	{% if show_email %}
-	<td style="text-align: left;">{{answer.profile.user.email}}</td>
-	{% endif %}
-	<td style="text-align: right;">{{answer.total_score}}</td>
-	<td style="text-align: right;">{{answer.spent_minutes}}:{{answer.spent_seconds}}</td>
-	{% for score in answer.scores %}
-	<td style="text-align: right;">{{score}}</td>
-	{% endfor %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% if contest.country %}
+<hr>
+<h3>{{contest.country.name}}</h3>
+{% include "results_table.html" with answers=country_answers %}
+<h3>{% trans "Others" %}</h3>
+{% endif %}
+{% include "results_table.html" with answers=other_answers %}
 {% endblock %}

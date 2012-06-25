@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-25 22:20+0200\n"
-"PO-Revision-Date: 2012-06-25 22:20+0200\n"
+"POT-Creation-Date: 2012-06-25 22:43+0200\n"
+"PO-Revision-Date: 2012-06-25 22:44+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:194 views.py:220 views.py:239
+#: views.py:202 views.py:228 views.py:247
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -226,22 +226,26 @@ msgstr "Kirjaudu sisään"
 msgid "Register"
 msgstr "Rekisteröidy"
 
-#: templates/results.html:9
+#: templates/results.html:10
+msgid "Others"
+msgstr "Muut"
+
+#: templates/results_table.html:6
 msgid "Name"
 msgstr "Nimi"
 
-#: templates/results.html:10
+#: templates/results_table.html:7
 msgid "Country"
 msgstr "Maa"
 
-#: templates/results.html:12
+#: templates/results_table.html:9
 msgid "Email"
 msgstr "Sähköposti"
 
-#: templates/results.html:14
+#: templates/results_table.html:11
 msgid "Score"
 msgstr "Pisteet"
 
-#: templates/results.html:15
+#: templates/results_table.html:12
 msgid "Time"
 msgstr "Aika"

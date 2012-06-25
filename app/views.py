@@ -120,7 +120,8 @@ def results(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participations = Participation.objects.filter(contest=contest.id)
     puzzles = list(Puzzle.objects.filter(contest=contest.id))
-    all_answers = []
+    country_answers = []
+    other_answers = []
     for participation in participations:
         answers = list(Answer.objects.filter(participation=participation.id))
         if answers:
@@ -136,16 +137,23 @@ def results(request, contest_id):
             spent_time = int((participation.last_submission
                               - participation.start_time).total_seconds())
             profile = UserProfile.objects.get(user=participation.user)
-            all_answers.append({ 'profile': profile,
-                                 'spent_minutes': spent_time / 60,
-                                 'spent_seconds': "%02d" % (spent_time % 60),
-                                 'total_score': total_score,
-                                 'scores': scores })
-    all_answers.sort(key=itemgetter('spent_minutes','spent_seconds'))
-    all_answers.sort(key=itemgetter('total_score'), reverse=True)
+            answer = { 'profile': profile,
+                       'spent_minutes': spent_time / 60,
+                       'spent_seconds': "%02d" % (spent_time % 60),
+                       'total_score': total_score,
+                       'scores': scores }
+            if contest.country and profile.country == contest.country:
+                country_answers.append(answer)
+            else:
+                other_answers.append(answer)
+    country_answers.sort(key=itemgetter('spent_minutes','spent_seconds'))
+    country_answers.sort(key=itemgetter('total_score'), reverse=True)
+    other_answers.sort(key=itemgetter('spent_minutes','spent_seconds'))
+    other_answers.sort(key=itemgetter('total_score'), reverse=True)
     return render_to_response('results.html', { 'contest': contest,
                                                 'puzzles': puzzles,
-                                                'answers': all_answers,
+                                                'country_answers': country_answers,
+                                                'other_answers': other_answers,
                                                 'show_email': contest.organizer == request.user },
                               context_instance=RequestContext(request))
 
