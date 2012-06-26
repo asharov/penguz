@@ -94,11 +94,13 @@ def contest(request, contest_id):
         difference = int(contest.duration * 60 - spent_time)
         puzzles = Puzzle.objects.filter(contest__exact=contest_id)
         form = AnswerForm(puzzles=puzzles)
+        patterns = puzzles.values('id', 'solution_pattern')
         return render_to_response('contestrunning.html',
                                   { 'contest': contest,
                                     'form': form,
                                     'minutes': difference / 60,
-                                    'seconds': '%02d' % (difference % 60) },
+                                    'seconds': '%02d' % (difference % 60),
+                                    'patterns': patterns },
                                   context_instance=RequestContext(request))
     else:
         return render_to_response('conteststart.html',

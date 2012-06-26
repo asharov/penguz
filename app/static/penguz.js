@@ -1,3 +1,11 @@
+String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) {
+	return typeof args[number] !== 'undefined'
+	    ? args[number]
+	    : match;
+    });
+}
 var fi;
 if (!fi) {
     fi = {};
@@ -18,6 +26,40 @@ fi.iki.ashar.Penguz = function() {
     var remainingIntervalId = null;
     function padNumberWithZero (number) {
 	return (number < 10 ? "0" : "") + number;
+    }
+    function parsePattern (pattern) {
+	var parsed = {};
+	var array = pattern.split(" ");
+	var lens = array[0].split("-");
+	parsed.minLength = lens[0] || 0;
+	parsed.maxLength = lens[1] || 999; // Large, longer than field length
+	if (array[1].charAt(0) !== '-' && array[1].charAt(1) === '-') {
+	    parsed.minChar = array[1].charAt(0);
+	    parsed.maxChar = array[1].charAt(2);
+	    array[1] = array[1].slice(3);
+	}
+	parsed.extraChars = array[1];
+	parsed.unique = array[2] && array[2] === "!";
+	return parsed;
+    }
+    function checkField(pattern, value) {
+	console.log('CHECK', pattern, value);
+	if (value.length > 0) {
+	    if (value.length < pattern.minLength
+		|| value.length > pattern.maxLength) {
+		if (pattern.minLength === pattern.maxLength) {
+		    return 'Answer must be {0} characters long'.
+			format(pattern.minLength);
+		} else {
+		    return 'Answer must be between {0} and {1} characters long'.
+			format(pattern.minLength, pattern.maxLength);
+		}
+	    } else {
+		return '';
+	    }
+	} else {
+	    return '';
+	}
     }
     return {
 	startRemainingUpdates: function(loadTime) {
@@ -42,6 +84,26 @@ fi.iki.ashar.Penguz = function() {
 		window.clearInterval(remainingIntervalId);
 		remainingIntervalId = null;
 	    }
+	},
+	insertFieldCheckers: function(patterns) {
+	    for (var p in patterns) {
+		patterns[p] = parsePattern(patterns[p]);
+	    }
+	    var re = new RegExp('^(id_answer_\\d+)_');
+	    $('table[id=answer_submission_form]').
+		find('input[id^=id_answer_]').
+		each(function (i) {
+		    console.log(i, this, $(this).attr('id'));
+		    var match = re.exec($(this).attr('id'));
+		    console.log(match);
+		    if (match) {
+			$(this).keyup(function() {
+			    console.log($(this).val());
+			    console.log(checkField(patterns[match[1]],
+						   $(this).val()));
+			});
+		    }
+		});
 	}
     }
 }();
