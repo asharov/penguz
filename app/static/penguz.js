@@ -5,7 +5,15 @@ String.prototype.format = function() {
 	    ? args[number]
 	    : match;
     });
-}
+};
+Object.prototype.isEmpty = function() {
+    for (var prop in this) {
+	if (this.hasOwnProperty(prop)) {
+	    return false;
+	}
+    }
+    return true;
+};
 var fi;
 if (!fi) {
     fi = {};
@@ -24,6 +32,7 @@ if (!fi.iki.ashar) {
 }
 fi.iki.ashar.Penguz = function() {
     var remainingIntervalId = null;
+    var invalidInputs = {};
     function padNumberWithZero (number) {
 	return (number < 10 ? "0" : "") + number;
     }
@@ -87,20 +96,34 @@ fi.iki.ashar.Penguz = function() {
 	},
 	insertFieldCheckers: function(patterns) {
 	    for (var p in patterns) {
-		patterns[p] = parsePattern(patterns[p]);
+		if (typeof patterns[p] === 'string') {
+		    patterns[p] = parsePattern(patterns[p]);
+		}
 	    }
-	    var re = new RegExp('^(id_answer_\\d+)_');
+	    var submitButton = $('button[name=answer]');
+	    var re = new RegExp('^(id_answer_\\d+)_.*$');
 	    $('table[id=answer_submission_form]').
 		find('input[id^=id_answer_]').
 		each(function (i) {
 		    console.log(i, this, $(this).attr('id'));
 		    var match = re.exec($(this).attr('id'));
-		    console.log(match);
 		    if (match) {
+			$(this).after('<span class="invalid-input-note"></span>');
 			$(this).keyup(function() {
-			    console.log($(this).val());
-			    console.log(checkField(patterns[match[1]],
-						   $(this).val()));
+			    var check = checkField(patterns[match[1]],
+						   $(this).val());
+			    $(this).next().text(check);
+			    if (check) {
+				invalidInputs[match[0]] = true;
+			    } else {
+				delete invalidInputs[match[0]];
+			    }
+			    console.log(invalidInputs);
+			    if (invalidInputs.isEmpty()) {
+				submitButton.removeAttr('disabled');
+			    } else {
+				submitButton.attr('disabled', 'disabled');
+			    }
 			});
 		    }
 		});

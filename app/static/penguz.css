@@ -25,6 +25,12 @@
     font-size: x-small;
 }
 
+.invalid-input-note {
+    font-size: xx-small;
+    color: Crimson;
+    padding: 0px 10px;
+}
+
 table.list {
     border-collapse: collapse;
     border: 1px solid Black;
