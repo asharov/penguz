@@ -93,12 +93,15 @@ class AnswerForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         puzzles = kwargs.pop('puzzles')
+        answers = kwargs.pop('answers') if 'answers' in kwargs else {}
         super(AnswerForm, self).__init__(*args, **kwargs)
         for puzzle in puzzles:
             names = puzzle.solution_row_names.split(',')
-            self.fields['answer_{0}'.format(puzzle.id)] = \
-                AnswerField(puzzle.solution_row_count, names, label=puzzle.name,
-                            required=False)
+            field = AnswerField(puzzle.solution_row_count, names,
+                                label=puzzle.name, required=False)
+            if puzzle.id in answers:
+                field.initial = answers[puzzle.id]
+            self.fields['answer_{0}'.format(puzzle.id)] = field
 
 class ContestForm(forms.ModelForm):
     class Meta:

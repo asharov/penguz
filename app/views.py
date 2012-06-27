@@ -93,7 +93,9 @@ def contest(request, contest_id):
         spent_time = (now - participation[0].start_time).total_seconds()
         difference = int(contest.duration * 60 - spent_time)
         puzzles = Puzzle.objects.filter(contest__exact=contest_id)
-        form = AnswerForm(puzzles=puzzles)
+        answer_set = Answer.objects.filter(participation=participation[0].id)
+        answers = dict([(answer.puzzle.id, answer.answer) for answer in answer_set])
+        form = AnswerForm(puzzles=puzzles, answers=answers)
         patterns = puzzles.values('id', 'solution_pattern')
         return render_to_response('contestrunning.html',
                                   { 'contest': contest,
