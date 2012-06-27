@@ -73,28 +73,26 @@ fi.iki.ashar.Penguz = function() {
 	    if (value.length < pattern.minLength
 		|| value.length > pattern.maxLength) {
 		if (pattern.minLength === pattern.maxLength) {
-		    return 'Answer must be {0} characters long'.
-			format(pattern.minLength);
+		    return messages.exactLength.format(pattern.minLength);
 		} else {
-		    return 'Answer must be between {0} and {1} characters long'.
-			format(pattern.minLength, pattern.maxLength);
+		    return messages.lengthLimit.format(pattern.minLength,
+						       pattern.maxLength);
 		}
 	    } else if (!pattern.pattern.test(value)) {
 		if (pattern.minChar) {
 		    if (pattern.extraChars) {
-			return 'Allowed characters are {0}-{1} and {2}'.
+			return messages.allowedRangeExtra.
 			    format(pattern.minChar, pattern.maxChar,
 				   pattern.extraChars);
 		    } else {
-			return 'Allowed characters are {0}-{1}'.
-			    format(pattern.minChar, pattern.maxChar);
+			return messages.allowedRange.format(pattern.minChar,
+							    pattern.maxChar);
 		    }
 		} else {
-		    return 'Allowed characters are {0}'.
-			format(pattern.extraChars);
+		    return messages.allowedExtra.format(pattern.extraChars);
 		}
 	    } else if (pattern.unique && !checkUnique(value)) {
-		return 'All characters must be different';
+		return messages.unique;
 	    } else {
 		return '';
 	    }

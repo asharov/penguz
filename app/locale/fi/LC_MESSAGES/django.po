@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-25 22:43+0200\n"
-"PO-Revision-Date: 2012-06-25 22:44+0200\n"
+"POT-Creation-Date: 2012-06-28 00:44+0200\n"
+"PO-Revision-Date: 2012-06-28 00:45+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -48,35 +48,35 @@ msgstr "Kilpailujärjestäjäpyyntö"
 msgid "Passwords do not match"
 msgstr "Salasanat eivät ole samat"
 
-#: forms.py:105
+#: forms.py:109
 msgid "Solution minimum length"
 msgstr "Ratkaisun minimipituus"
 
-#: forms.py:107
+#: forms.py:111
 msgid "Solution maximum length"
 msgstr "Ratkaisun maksimipituus"
 
-#: forms.py:109
+#: forms.py:113
 msgid "First allowed character"
 msgstr "Ensimmäinen sallittu merkki"
 
-#: forms.py:111
+#: forms.py:115
 msgid "Last allowed character"
 msgstr "Viimeinen sallittu merkki"
 
-#: forms.py:113
+#: forms.py:117
 msgid "Additional allowed characters"
 msgstr "Ylimääräiset sallitut merkit"
 
-#: forms.py:115
+#: forms.py:119
 msgid "No repetition"
 msgstr "Toisto kielletty"
 
-#: forms.py:127
+#: forms.py:131
 msgid "Minimum length must not be larger than maximum length"
 msgstr "Minimipituus ei saa olla maksimipituutta suurempi"
 
-#: forms.py:131
+#: forms.py:135
 msgid "First allowed character must come before the last allowed character"
 msgstr ""
 "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
@@ -141,7 +141,7 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:202 views.py:228 views.py:247
+#: views.py:204 views.py:230 views.py:249
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -193,6 +193,30 @@ msgstr "Kilpailu ohi"
 #: templates/contestrunning.html:13
 msgid "Submit answers"
 msgstr "Lähetä vastaukset"
+
+#: templates/contestrunning.html:19
+msgid "Answer must be {0} characters long"
+msgstr "Vastauksen on oltava {0} merkkiä pitkä"
+
+#: templates/contestrunning.html:20
+msgid "Answer must be between {0} and {1} characters long"
+msgstr "Vastauksen on oltava {0}-{1} merkkiä pitkä"
+
+#: templates/contestrunning.html:21
+msgid "Allowed characters are {0}-{1} and {2}"
+msgstr "Sallitut merkit ovat {0}-{1} ja {2}"
+
+#: templates/contestrunning.html:22
+msgid "Allowed characters are {0}-{1}"
+msgstr "Sallitut merkit ovat {0}-{1}"
+
+#: templates/contestrunning.html:23
+msgid "Allowed characters are {0}"
+msgstr "Sallitut merkit ovat {0}"
+
+#: templates/contestrunning.html:24
+msgid "All characters must be different"
+msgstr "Kaikkien merkkien on oltava erilaisia"
 
 #: templates/conteststart.html:7
 msgid "Start contest"
