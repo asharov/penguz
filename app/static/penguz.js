@@ -42,14 +42,30 @@ fi.iki.ashar.Penguz = function() {
 	var lens = array[0].split("-");
 	parsed.minLength = lens[0] || 0;
 	parsed.maxLength = lens[1] || 999; // Large, longer than field length
+	var allowed = '';
 	if (array[1].charAt(0) !== '-' && array[1].charAt(1) === '-') {
 	    parsed.minChar = array[1].charAt(0);
 	    parsed.maxChar = array[1].charAt(2);
+	    allowed = array[1].substring(0, 3);
 	    array[1] = array[1].slice(3);
 	}
-	parsed.extraChars = array[1];
+	allowed += array[1];
+	parsed.extraChars = array[1].split('').join(', ');
+	if (allowed) {
+	    parsed.pattern = new RegExp('^[' + allowed + ']*$');
+	} else {
+	    parsed.pattern = new RegExp('.*');
+	}
 	parsed.unique = array[2] && array[2] === "!";
 	return parsed;
+    }
+    function checkUnique(value) {
+	for (var i = 0; i < value.length - 1; ++i) {
+	    if (value.indexOf(value.charAt(i), i + 1) >= 0) {
+		return false;
+	    }
+	}
+	return true;
     }
     function checkField(pattern, value) {
 	console.log('CHECK', pattern, value);
@@ -63,6 +79,22 @@ fi.iki.ashar.Penguz = function() {
 		    return 'Answer must be between {0} and {1} characters long'.
 			format(pattern.minLength, pattern.maxLength);
 		}
+	    } else if (!pattern.pattern.test(value)) {
+		if (pattern.minChar) {
+		    if (pattern.extraChars) {
+			return 'Allowed characters are {0}-{1} and {2}'.
+			    format(pattern.minChar, pattern.maxChar,
+				   pattern.extraChars);
+		    } else {
+			return 'Allowed characters are {0}-{1}'.
+			    format(pattern.minChar, pattern.maxChar);
+		    }
+		} else {
+		    return 'Allowed characters are {0}'.
+			format(pattern.extraChars);
+		}
+	    } else if (pattern.unique && !checkUnique(value)) {
+		return 'All characters must be different';
 	    } else {
 		return '';
 	    }
