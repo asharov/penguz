@@ -19,8 +19,17 @@
   </div>
   <hr>
 
-  {% block pagecontent %}
-  {% endblock %}
+    <div id="container">
+      <div id="navigation-bar">
+	<ul>
+	  <li><a href="{% url app.views.index %}">{% trans "Home" %}</a></li>
+	</ul>
+      </div>
+      <div id="page-content">
+	{% block pagecontent %}
+	{% endblock %}
+      </div>
+    </div>
 
   <hr>
     <p class="extra-information">

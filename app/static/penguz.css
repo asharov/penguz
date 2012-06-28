@@ -21,6 +21,20 @@
     color: Black;
 }
 
+#navigation-bar {
+    float: left;
+    width: 13%;
+    background-color: DeepSkyBlue;
+}
+
+#navigation-bar ul {
+    list-style-type: none;
+}
+
+#page-content {
+    margin-left: 15%;
+}
+
 .extra-information {
     font-size: x-small;
 }
