@@ -126,7 +126,10 @@ def results(request, contest_id):
     puzzles = list(Puzzle.objects.filter(contest=contest.id))
     country_answers = []
     other_answers = []
+    now = datetime.now()
     for participation in participations:
+        if not has_ended(now, contest, [participation]):
+            continue
         answers = list(Answer.objects.filter(participation=participation.id))
         if answers:
             scores = []
