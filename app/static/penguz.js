@@ -49,10 +49,15 @@ fi.iki.ashar.Penguz = function() {
 	    allowed = array[1].substring(0, 3);
 	    array[1] = array[1].slice(3);
 	}
+        var i = array[1].indexOf('-');
+        if (i >= 0 && i < array[1].length - 1) {
+            array[1].slice(i, 1);
+            array[1] += '-';
+        }
 	allowed += array[1];
 	parsed.extraChars = array[1].split('').join(', ');
 	if (allowed) {
-	    parsed.pattern = new RegExp('^[' + allowed + ']*$');
+	    parsed.pattern = new RegExp('^[' + allowed + ']*$', 'i');
 	} else {
 	    parsed.pattern = new RegExp('.*');
 	}
