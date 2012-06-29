@@ -13,7 +13,7 @@ class RegisterForm(forms.Form):
     name = forms.CharField(label=ugettext_lazy('Full name'), max_length=80,
                            required=False)
     country = forms.ChoiceField(label=ugettext_lazy('Nationality'),
-                                choices=[('', '----')] + countries.COUNTRIES,
+                                choices=[('', '----')] + list(countries.COUNTRIES),
                                 required=False)
     password = forms.CharField(label=ugettext_lazy('Password'), max_length=60,
                                widget=forms.PasswordInput)
