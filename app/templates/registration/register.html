@@ -5,44 +5,27 @@
 {% block pagecontent %}
   <p>
     {% blocktrans %}
-    Enter your information here.
-    {% endblocktrans %}
-    {% blocktrans %}
-    Your username and password are used to log in to the site.
-    {% endblocktrans %}
-    {% blocktrans %}
-    Your name and nationality will be displayed in the results table
-    of the contests that you participate in, but neither is mandatory.
-    {% endblocktrans %}
-    {% blocktrans %}
-    Nationality is used to determine the proper results for contests
-    such as national championships, so it should be the country you
-    would represent at world championships.
-    {% endblocktrans %}
-    {% blocktrans %}
-    If you do not provide them, your username is used in place of your
-    name, and your nationality is not displayed,
-    {% endblocktrans %}
-    {% blocktrans %}
-    Your email address will not be publicly visible, but it will be
-    shown to the organizer of any contest you participate in, to
-    enable them to contact you afterwards.
+    Enter your information here. Your username and password are used
+    to log in to the site. Your name and nationality will be displayed
+    in the results table of the contests that you participate in, but
+    neither is mandatory. Nationality is used to determine the proper
+    results for contests such as national championships, so it should
+    be the country you would represent at world championships. If you
+    do not provide them, your username is used in place of your name,
+    and your nationality is not displayed, Your email address will not
+    be publicly visible, but it will be shown to the organizer of any
+    contest you participate in, to enable them to contact you
+    afterwards.
     {% endblocktrans %}
   </p>
   <p>
     {% blocktrans %}
     If you wish to organize contests on this site in addition to
     participating in them, check the box requesting to be an
-    organizer.
-    {% endblocktrans %}
-    {% blocktrans %}
-    An administrator will, at some point after your registration, give
-    you the appropriate access.
-    {% endblocktrans %}
-    {% blocktrans %}
-    When you have been given permission to organize contests, you will
-    have an additional selection on the home page to create a new
-    contest.
+    organizer. An administrator will, at some point after your
+    registration, give you the appropriate access. When you have been
+    given permission to organize contests, you will have an additional
+    selection on the home page to create a new contest.
     {% endblocktrans %}
   </p>
   <form action="{% url app.views.register %}" method="post">

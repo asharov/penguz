@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 00:44+0200\n"
-"PO-Revision-Date: 2012-06-28 00:45+0200\n"
+"POT-Creation-Date: 2012-06-30 22:54+0200\n"
+"PO-Revision-Date: 2012-06-30 23:10+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -48,35 +48,35 @@ msgstr "Kilpailujärjestäjäpyyntö"
 msgid "Passwords do not match"
 msgstr "Salasanat eivät ole samat"
 
-#: forms.py:109
+#: forms.py:112
 msgid "Solution minimum length"
 msgstr "Ratkaisun minimipituus"
 
-#: forms.py:111
+#: forms.py:114
 msgid "Solution maximum length"
 msgstr "Ratkaisun maksimipituus"
 
-#: forms.py:113
+#: forms.py:116
 msgid "First allowed character"
 msgstr "Ensimmäinen sallittu merkki"
 
-#: forms.py:115
+#: forms.py:118
 msgid "Last allowed character"
 msgstr "Viimeinen sallittu merkki"
 
-#: forms.py:117
+#: forms.py:120
 msgid "Additional allowed characters"
 msgstr "Ylimääräiset sallitut merkit"
 
-#: forms.py:119
+#: forms.py:122
 msgid "No repetition"
 msgstr "Toisto kielletty"
 
-#: forms.py:131
+#: forms.py:134
 msgid "Minimum length must not be larger than maximum length"
 msgstr "Minimipituus ei saa olla maksimipituutta suurempi"
 
-#: forms.py:135
+#: forms.py:138
 msgid "First allowed character must come before the last allowed character"
 msgstr ""
 "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
@@ -141,16 +141,59 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:204 views.py:230 views.py:249
+#: views.py:209 views.py:235 views.py:254
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
-#: templates/addpuzzles.html:10 templates/editpuzzles.html:10
+#: templates/addpuzzles.html:6
+msgid ""
+"\n"
+"    Enter the data for each puzzle in the contest. Each row in a\n"
+"    solution is entered separately by the contestant, but here the\n"
+"    solution and row names need to be entered all together in a single\n"
+"    field, separated by commas. Give descriptive names to the solution\n"
+"    rows with correspondence to the puzzle, e.g., Row 5, Column 3.\n"
+"    "
+msgstr ""
+"\n"
+"Syötä kunkin kilpailutehtävän tiedot. Kilpailijat syöttävät ratkaisun\n"
+"rivit erillisinä, mutta tässä lomakkeessa ratkaisu ja rivien nimet on\n"
+"syötettävä kaikki yhteen kenttään pilkuilla erotettuina. Muista antaa\n"
+"ratkaisun riveille tehtävään viittaavat nimet, esim. Rivi 5, Sarake 3."
+
+#: templates/addpuzzles.html:15
+msgid ""
+"\n"
+"    The length, allowed characters, and repetition will be used to\n"
+"    inform participants during the contest if their attempted answer\n"
+"    has invalid form. They should therefore only contain constraints\n"
+"    that are already evident from the puzzle instructions. The \"First\n"
+"    allowed character\"-\"Last allowed character\" pair is for entering\n"
+"    ranges, such as A-F or 1-9. \"Additional allowed characters\" can be\n"
+"    used to allow characters outside the range, such as X or - to\n"
+"    indicate an empty spot. Check the \"No repetition\" box if the form\n"
+"    of the answer key ensures that all the characters are distinct,\n"
+"    e.g., the numbers 1 to 9 in a classic sudoku.\n"
+"    "
+msgstr ""
+"\n"
+"Ratkaisun pituutta, sallittuja merkkejä ja toistokieltoa käytetään\n"
+"kilpailun aikana kertomaan kilpailijalle, jos hänen yrittämänsä\n"
+"ratkaisu on virheellisen muotoinen, joten niiden tulisi aiheuttaa vain\n"
+"rajoitteita, jotka ovat ilmeisiä tehtävän ohjeesta. \"Ensimmäinen\n"
+"sallittu merkki\" ja \"Viimeinen sallittu merkki\" antavat merkkivälin\n"
+"kuten A-F tai 1-9. \"Ylimääräiset sallitut merkit\" antavat erilliset\n"
+"merkit, jotka voivat myös esiintyä ratkaisussa, kuten X tai -\n"
+"ilmaisemaan tyhjää kohtaa. Merkitse \"Toisto kielletty\", jos ratkaisun\n"
+"muoto takaa, että kaikki merkit ovat erilaisia, esim. numerot 1-9\n"
+"klassisessa sudokussa."
+
+#: templates/addpuzzles.html:33 templates/editpuzzles.html:10
 #, python-format
 msgid "Puzzle %(value)s"
 msgstr "Tehtävä %(value)s"
 
-#: templates/addpuzzles.html:16
+#: templates/addpuzzles.html:39
 msgid "Set puzzles"
 msgstr "Lisää tehtävät"
 
@@ -222,7 +265,27 @@ msgstr "Kaikkien merkkien on oltava erilaisia"
 msgid "Start contest"
 msgstr "Aloita kilpailu"
 
-#: templates/create.html:10
+#: templates/create.html:6
+msgid ""
+"\n"
+"    Enter the general new contest information here. The description,\n"
+"    booklets, booklet password, and start and end times can be edited\n"
+"    afterwards, other information will remain as you enter it now.\n"
+"    Start and end times are entered in the format <tt>year-month-day\n"
+"    hour:minute</tt>. If you wish participants from one country to be\n"
+"    shown separately in the results (e.g., for national\n"
+"    championships), set the country, otherwise leave it blank.\n"
+"    "
+msgstr ""
+"\n"
+"Syötä uuden kilpailun yleiset tiedot. Vain kuvausta, ohjeita,\n"
+"kilpailutehtäviä ja alkamis- ja päättymisaikaa voi muokata myöhemmin.\n"
+"Alkamis- ja päättymisaika syötetään muodossa <tt>vuosi-kuukausi-päivä\n"
+"tunti:minuutti</tt>. Jos olet järjestämässä esim. kansallisia\n"
+"mestaruuskilpailuja, joissa yhden maan edustajat tarvitsee erotella\n"
+"tuloksissa, anna myös kilpailumaa."
+
+#: templates/create.html:21
 msgid "Create contest"
 msgstr "Luo kilpailu"
 
@@ -246,9 +309,13 @@ msgstr "Kirjaudu ulos"
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-#: templates/pagebody.html:15 templates/registration/register.html:11
+#: templates/pagebody.html:15 templates/registration/register.html:36
 msgid "Register"
 msgstr "Rekisteröidy"
+
+#: templates/pagebody.html:25
+msgid "Home"
+msgstr "Etusivu"
 
 #: templates/results.html:10
 msgid "Others"
@@ -273,3 +340,48 @@ msgstr "Pisteet"
 #: templates/results_table.html:12
 msgid "Time"
 msgstr "Aika"
+
+#: templates/registration/register.html:7
+msgid ""
+"\n"
+"    Enter your information here. Your username and password are used\n"
+"    to log in to the site. Your name and nationality will be displayed\n"
+"    in the results table of the contests that you participate in, but\n"
+"    neither is mandatory. Nationality is used to determine the proper\n"
+"    results for contests such as national championships, so it should\n"
+"    be the country you would represent at world championships. If you\n"
+"    do not provide them, your username is used in place of your name,\n"
+"    and your nationality is not displayed, Your email address will not\n"
+"    be publicly visible, but it will be shown to the organizer of any\n"
+"    contest you participate in, to enable them to contact you\n"
+"    afterwards.\n"
+"    "
+msgstr ""
+"\n"
+"Syötä omat tietosi tähän. Käyttäjätunnusta ja salasanaa käytetään\n"
+"kirjautumaan sisään sivustolle. Nimi ja kansalaisuus näytetään\n"
+"tuloksissa, jos osallistut kilpailuun, mutta kumpikaan ei ole\n"
+"pakollinen. Kansalaisuus merkitsee esim. kansallisissa\n"
+"mestaruuskilpailuissa, joten sen tulisi olla maa, jota edustat\n"
+"MM-kilpailuissa. Jos et anna näitä tietoja, käyttäjätunnustasi\n"
+"käytetään nimen paikalla tuloksissa, ja kansalaisuutta ei näytetä\n"
+"ollenkaan. Sähköpostiosoitteesi ei ole missään julkisesti näkyvillä,\n"
+"mutta se näytetään järjestäjälle, kun osallistut kilpailuun, jotta hän\n"
+"voi ottaa sinuun yhteyttä kilpailun jälkeen."
+
+#: templates/registration/register.html:22
+msgid ""
+"\n"
+"    If you wish to organize contests on this site in addition to\n"
+"    participating in them, check the box requesting to be an\n"
+"    organizer. An administrator will, at some point after your\n"
+"    registration, give you the appropriate access. When you have been\n"
+"    given permission to organize contests, you will have an additional\n"
+"    selection on the home page to create a new contest.\n"
+"    "
+msgstr ""
+"\n"
+"Jos haluat osallistumisen lisäksi myös järjestää kilpailuja tällä\n"
+"sivustolla, merkitse Kilpailujärjestäjäpyyntö-kohta, ja sivuston\n"
+"ylläpitäjä antaa sinulle tarvittavat oikeudet. Kun olet saanut luvan\n"
+"järjestää kilpailuja, voit luoda uuden kilpailun etusivulta käsin."

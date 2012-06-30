@@ -4,40 +4,25 @@
 {% block pagecontent %}
   <p>
     {% blocktrans %}
-    Enter the data for each puzzle in the contest.
-    {% endblocktrans %}
-    {% blocktrans %}
-    Each row in a solution is entered separately by the contestant,
-    but here the solution and row names need to be entered all
-    together in a single field, separated by commas.
-    {% endblocktrans %}
-    {% blocktrans %}
-    Give descriptive names to the solution rows with correspondence to
-    the puzzle, e.g., Row 5, Column 3.
+    Enter the data for each puzzle in the contest. Each row in a
+    solution is entered separately by the contestant, but here the
+    solution and row names need to be entered all together in a single
+    field, separated by commas. Give descriptive names to the solution
+    rows with correspondence to the puzzle, e.g., Row 5, Column 3.
     {% endblocktrans %}
   </p>
   <p>
     {% blocktrans %}
     The length, allowed characters, and repetition will be used to
     inform participants during the contest if their attempted answer
-    has invalid form.
-    {% endblocktrans %}
-    {% blocktrans %}
-    They should therefore only contain constraints that are already
-    evident from the puzzle instructions.
-    {% endblocktrans %}
-    {% blocktrans %}
-    The "First allowed character"-"Last allowed character" pair is for
-    entering ranges, such as A-F or 1-9.
-    {% endblocktrans %}
-    {% blocktrans %}
-    "Additional allowed characters" can be used to allow characters
-    outside the range, such as X or - to indicate an empty spot.
-    {% endblocktrans %}
-    {% blocktrans %}
-    Check the "No repetition" box if the form of the answer key
-    ensures that all the characters are distinct, e.g., the numbers 1
-    to 9 in a classic sudoku.
+    has invalid form. They should therefore only contain constraints
+    that are already evident from the puzzle instructions. The "First
+    allowed character"-"Last allowed character" pair is for entering
+    ranges, such as A-F or 1-9. "Additional allowed characters" can be
+    used to allow characters outside the range, such as X or - to
+    indicate an empty spot. Check the "No repetition" box if the form
+    of the answer key ensures that all the characters are distinct,
+    e.g., the numbers 1 to 9 in a classic sudoku.
     {% endblocktrans %}
   </p>
   <form action="/addpuzzles/{{contest.id}}/" method="post">

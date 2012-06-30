@@ -4,21 +4,13 @@
 {% block pagecontent %}
   <p>
     {% blocktrans %}
-    Enter the general new contest information here.
-    {% endblocktrans %}
-    {% blocktrans %}
-    The description, booklets, booklet password, and start and end
-    times can be edited afterwards, other information will remain as
-    you enter it now.
-    {% endblocktrans %}
-    {% blocktrans %}
+    Enter the general new contest information here. The description,
+    booklets, booklet password, and start and end times can be edited
+    afterwards, other information will remain as you enter it now.
     Start and end times are entered in the format <tt>year-month-day
-    hour:minute</tt>.
-    {% endblocktrans %}
-    {% blocktrans %}
-    If you wish participants from one country to be shown separately
-    in the results (e.g., for national championships), set the
-    country, otherwise leave it blank.
+    hour:minute</tt>. If you wish participants from one country to be
+    shown separately in the results (e.g., for national
+    championships), set the country, otherwise leave it blank.
     {% endblocktrans %}
   </p>
   <form action="/create/" method="post" enctype="multipart/form-data">
