@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from operator import itemgetter
 import re
+import logging
 
 from django import forms
 from django.core.urlresolvers import reverse
@@ -17,6 +18,8 @@ from django.utils.translation import ugettext as _
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
 from penguz.app.forms import RegisterForm, AnswerForm, ContestForm, PuzzleForm, ContestEditForm
 
+logger = logging.getLogger(__name__)
+
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
     return contest.end_time < now or (participation and participation[0].start_time + time < now)
@@ -30,7 +33,6 @@ def set_answer(participation, key, answer):
         score = 0
         if puzzle.solution.lower() == answer.lower():
             score = puzzle.points
-        print puzzle.solution, score
         try:
             ans = Answer.objects.get(participation=participation,
                                      puzzle=puzzle)
@@ -56,6 +58,7 @@ def register(request):
     form = RegisterForm(request.POST or None)
     if form.is_valid():
         data = form.cleaned_data
+        logger.info(u"Register user {0}".format(data))
         if not User.objects.filter(username=data['username']).exists():
             form.save()
             new_user = authenticate(username=data['username'],
@@ -114,6 +117,7 @@ def contest(request, contest_id):
 def start(request, contest_id):
     if request.method == 'POST':
         contest = get_object_or_404(Contest, pk=contest_id)
+        logger.info("Start contest {0} {1}".format(request.user, contest))
         participation = Participation(user=request.user, contest=contest)
         participation.save()
         return HttpResponseRedirect(format_url("contest", contest))
@@ -170,13 +174,13 @@ def answer(request, contest_id):
         puzzles = Puzzle.objects.filter(contest=contest.id)
         form = AnswerForm(request.POST, puzzles=puzzles)
         if form.is_valid():
-            print form.cleaned_data
+            logger.info(u"Answer submission {0} {1}".format(request.user,
+                                                            form.cleaned_data))
             participation = get_object_or_404(Participation, contest=contest.id,
                                               user=request.user)
             if not has_ended(datetime.now(), contest, [participation]):
                 prefix = re.compile("^answer_(.+)$")
                 for key, answer in form.cleaned_data.items():
-                    print key, answer
                     if len(answer) > 0:
                         match = prefix.match(key)
                         if match:
@@ -190,6 +194,8 @@ def answer(request, contest_id):
 def create(request):
     form = ContestForm(request.POST or None, request.FILES or None)
     if form.is_valid():
+        logger.info(u"Contest creation {0} {1}".format(request.user,
+                                                       form.cleaned_data))
         contest = form.save(commit=False)
         contest.organizer = request.user
         if 'instruction_booklet' in request.FILES:
@@ -213,7 +219,6 @@ def addpuzzles(request, contest_id):
         i = 1
         for form in formset:
             data = form.cleaned_data
-            print data
             puzzle = form.save(commit=False)
             puzzle.contest = contest
             puzzle.number = i
@@ -236,6 +241,7 @@ def edit(request, contest_id):
     form = ContestEditForm(request.POST or None, request.FILES or None,
                            instance=contest)
     if request.POST and form.is_valid():
+        logger.info(u"Edit contest {0} {1}".format(contest, form.cleaned_data))
         contest = form.save(commit=False)
         if 'instruction_booklet' in request.FILES:
             contest.instruction_booklet = request.FILES['instruction_booklet']

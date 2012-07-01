@@ -1,5 +1,7 @@
 # Django settings for penguz project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -120,18 +122,26 @@ INSTALLED_APPS = (
     'penguz.app',
 )
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'timestamp': {
+            'format': '%(asctime)s %(message)s',
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'actions': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'timestamp',
+            'filename': os.path.join('/', 'var', 'log', 'penguz', 'actions.log'),
         }
     },
     'loggers': {
@@ -139,6 +149,11 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'app.views': {
+            'handlers': ['actions'],
+            'level': 'INFO',
+            'propagate': False,
         },
     }
 }
