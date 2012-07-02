@@ -23,6 +23,9 @@
       <div id="navigation-bar">
 	<ul>
 	  <li><a href="{% url app.views.index %}">{% trans "Home" %}</a></li>
+	  {% if user.is_authenticated %}
+	  <li><a href="/own">{% trans "My contests" %}</a></li>
+	  {% endif %}
 	  {% if perms.app.add_contest %}
 	  <li><a href="/create">{% trans "Create a new contest" %}</a></li>
 	  {% endif %}

@@ -1,0 +1,50 @@
+{% extends "pagebody.html" %}
+{% load i18n %}
+
+{% block pagecontent %}
+  <h2>{% trans "Own contests" %}</h2>
+  <p>
+    {% blocktrans %}
+    These are all the contests you have participated in or have
+    organized on this site.
+    {% endblocktrans %}
+  </p>
+  {% if own_contests %}
+  <h3>{% trans "Contests as participant" %}</h3>
+  {% for contest in own_contests %}
+  <dt><a href="/contest/{{contest.id}}/{{contest.slug}}">{{contest.name}}</a></dt>
+  <dd>
+    <p>
+      {{contest.description}}
+    </p>
+  </dd>
+  {% endfor %}
+  {% endif %}
+  {% if organized_contests %}
+  <h3>{% trans "Organized contests" %}</h3>
+  {% for contest in incomplete_contests %}
+  <dt><a href="/contest/{{contest.id}}/{{contest.slug}}">{{contest.name}}</a></dt>
+  <dd>
+    <p>
+      {{contest.description}}
+    </p>
+    <p>
+      <a href="/edit/{{contest.id}}/{{contest.slug}}">{% trans "Edit contest" %}</a>
+      <a href="/addpuzzles/{{contest.id}}/{{contest.slug}}">{% trans "Add puzzles" %}</a>
+    </p>
+  </dd>
+  {% endfor %}
+  {% for contest in complete_contests %}
+  <dt><a href="/contest/{{contest.id}}/{{contest.slug}}">{{contest.name}}</a></dt>
+  <dd>
+    <p>
+      {{contest.description}}
+    </p>
+    <p>
+      <a href="/edit/{{contest.id}}/{{contest.slug}}">{% trans "Edit contest" %}</a>
+      <a href="/editpuzzles/{{contest.id}}/{{contest.slug}}">{% trans "Edit puzzles" %}</a>
+    </p>
+  </dd>
+  {% endfor %}
+  {% endif %}
+{% endblock %}

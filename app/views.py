@@ -78,6 +78,21 @@ def register(request):
                               { 'form': form },
                               context_instance=RequestContext(request))
 
+@user_passes_test(lambda u: u.is_authenticated())
+def own(request):
+    participated_contests = Participation.objects.filter(user=request.user.id).values('contest').query
+    own_contests = Contest.objects.filter(id__in=participated_contests)
+    organized_contests = Contest.objects.filter(organizer=request.user.id)
+    contests_with_puzzles = Puzzle.objects.all().values('contest').query
+    incomplete_contests = organized_contests.exclude(id__in=contests_with_puzzles)
+    complete_contests = organized_contests.filter(id__in=contests_with_puzzles)
+    return render_to_response('own.html',
+                              { 'own_contests': own_contests,
+                                'organized_contests': organized_contests,
+                                'incomplete_contests': incomplete_contests,
+                                'complete_contests': complete_contests },
+                              context_instance=RequestContext(request))
+
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
