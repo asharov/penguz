@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 22:54+0200\n"
-"PO-Revision-Date: 2012-06-30 23:10+0200\n"
+"POT-Creation-Date: 2012-07-02 18:09+0200\n"
+"PO-Revision-Date: 2012-07-02 18:09+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -137,11 +137,11 @@ msgstr "Ratkaisun rivien määrä"
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
-#: views.py:67
+#: views.py:77
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:209 views.py:235 views.py:254
+#: views.py:222 views.py:247 views.py:267
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -197,11 +197,11 @@ msgstr "Tehtävä %(value)s"
 msgid "Set puzzles"
 msgstr "Lisää tehtävät"
 
-#: templates/contest.html:8
+#: templates/contest.html:8 templates/index.html:44
 msgid "Contest period starts"
 msgstr "Kilpailuaika alkaa"
 
-#: templates/contest.html:9
+#: templates/contest.html:9 templates/index.html:28
 msgid "Contest period ends"
 msgstr "Kilpailuaika päättyy"
 
@@ -293,11 +293,40 @@ msgstr "Luo kilpailu"
 msgid "Submit changes"
 msgstr "Lähetä muutokset"
 
-#: templates/index.html:13
-msgid "No contests available."
-msgstr "Kilpailuja ei ole tällä palvelimella."
+#: templates/index.html:5
+msgid "Available contests"
+msgstr "Kilpailuluettelo"
 
-#: templates/index.html:17
+#: templates/index.html:9
+msgid ""
+"\n"
+"    Below is a list of all contests on this site.\n"
+"    "
+msgstr ""
+"\n"
+"Alla on luettelo kaikista tämän sivuston kilpailuista."
+
+#: templates/index.html:13
+#, fuzzy
+msgid ""
+"\n"
+"    There are currently no contests on this site.\n"
+"    "
+msgstr "\nTällä sivustolla ei ole yhtään kilpailua."
+
+#: templates/index.html:19
+msgid "Current contests"
+msgstr "Käynnissä olevat kilpailut"
+
+#: templates/index.html:35
+msgid "Upcoming contests"
+msgstr "Tulossa olevat kilpailut"
+
+#: templates/index.html:51
+msgid "Past contests"
+msgstr "Päättyneet kilpailut"
+
+#: templates/index.html:65
 msgid "Create a new contest"
 msgstr "Luo uusi kilpailu"
 

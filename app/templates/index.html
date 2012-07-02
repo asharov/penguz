@@ -2,15 +2,62 @@
 {% load i18n %}
 
 {% block pagecontent %}
-{% if contest_list %}
+  <h2>{% trans "Available contests" %}</h2>
+  <p>
+    {% if running_contest_list or future_contest_list or past_contest_list %}
+    {% blocktrans %}
+    Below is a list of all contests on this site.
+    {% endblocktrans %}
+    {% else %}
+    {% blocktrans %}
+    There are currently no contests on this site.
+    {% endblocktrans %}
+    {% endif %}
+  </p>
+{% if running_contest_list %}
+  <h3>{% trans "Current contests" %}</h3>
   <dl>
-    {% for contest in contest_list %}
-    <dd><a href="/contest/{{contest.id}}/{{contest.slug}}">{{ contest.name }}</a></dd>
-    <dt>{{ contest.description }}</dd>
+    {% for contest in running_contest_list %}
+    <dt><a href="/contest/{{contest.id}}/{{contest.slug}}">{{ contest.name }}</a></dt>
+    <dd>
+      <p>
+	{{ contest.description }}
+      </p>
+      <p>
+	{% trans "Contest period ends" %}: {{contest.end_time}}
+      </p>
+    </dd>
     {% endfor %}
   </dl>
-{% else %}
-  <p>{% trans "No contests available." %}</p>
+{% endif %}
+{% if future_contest_list %}
+  <h3>{% trans "Upcoming contests" %}</h3>
+  <dl>
+    {% for contest in future_contest_list %}
+    <dt><a href="/contest/{{contest.id}}/{{contest.slug}}">{{ contest.name }}</a></dt>
+    <dd>
+      <p>
+	{{ contest.description }}
+      </p>
+      <p>
+	{% trans "Contest period starts" %}: {{contest.start_time}}
+      </p>
+    </dd>
+    {% endfor %}
+  </dl>
+{% endif %}
+{% if past_contest_list %}
+  <h3>{% trans "Past contests" %}</h3>
+  <dl>
+    {% for contest in past_contest_list %}
+    <dt><a href="/contest/{{contest.id}}/{{contest.slug}}">{{ contest.name }}</a></dt>
+    <dd>
+      <p>
+	{{ contest.description }}
+      </p>
+    </dd>
+    {% endfor %}
+  </dl>
 {% endif %}
 {% if creatable %}
   <p>

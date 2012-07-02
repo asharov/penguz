@@ -47,10 +47,17 @@ def set_answer(participation, key, answer):
         pass
 
 def index(request):
+    now = datetime.now()
     contests_with_puzzles = Puzzle.objects.all().values('contest').query
     contest_list = Contest.objects.filter(id__in=contests_with_puzzles)
+    running_contest_list = contest_list.filter(start_time__lte=now,
+                                               end_time__gt=now)
+    future_contest_list = contest_list.filter(start_time__gt=now)
+    past_contest_list = contest_list.filter(end_time__lte=now)
     return render_to_response('index.html',
-                              { 'contest_list': contest_list,
+                              { 'running_contest_list': running_contest_list,
+                                'future_contest_list': future_contest_list,
+                                'past_contest_list': past_contest_list,
                                 'creatable': request.user.has_perm('app.add_contest') },
                               context_instance=RequestContext(request))
 
