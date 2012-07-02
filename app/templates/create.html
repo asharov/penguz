@@ -13,7 +13,7 @@
     championships), set the country, otherwise leave it blank.
     {% endblocktrans %}
   </p>
-  <form action="/create/" method="post" enctype="multipart/form-data">
+  <form action="/create" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table class="form">
       {{ form.as_table }}

@@ -24,7 +24,7 @@
 	<ul>
 	  <li><a href="{% url app.views.index %}">{% trans "Home" %}</a></li>
 	  {% if perms.app.add_contest %}
-	  <li><a href="/create/">{% trans "Create a new contest" %}</a></li>
+	  <li><a href="/create">{% trans "Create a new contest" %}</a></li>
 	  {% endif %}
 	</ul>
       </div>
