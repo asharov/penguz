@@ -31,6 +31,10 @@
     list-style-type: none;
 }
 
+#navigation-bar li {
+    margin: 10px 0px;
+}
+
 #page-content {
     margin-left: 15%;
 }

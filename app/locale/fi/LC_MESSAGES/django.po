@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-02 18:09+0200\n"
-"PO-Revision-Date: 2012-07-02 18:09+0200\n"
+"POT-Creation-Date: 2012-07-02 18:41+0200\n"
+"PO-Revision-Date: 2012-07-02 18:42+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -137,11 +137,11 @@ msgstr "Ratkaisun rivien määrä"
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
-#: views.py:77
+#: views.py:76
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:222 views.py:247 views.py:267
+#: views.py:221 views.py:246 views.py:266
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -197,11 +197,11 @@ msgstr "Tehtävä %(value)s"
 msgid "Set puzzles"
 msgstr "Lisää tehtävät"
 
-#: templates/contest.html:8 templates/index.html:44
+#: templates/contest.html:8 templates/index.html:43
 msgid "Contest period starts"
 msgstr "Kilpailuaika alkaa"
 
-#: templates/contest.html:9 templates/index.html:28
+#: templates/contest.html:9 templates/index.html:27
 msgid "Contest period ends"
 msgstr "Kilpailuaika päättyy"
 
@@ -297,7 +297,7 @@ msgstr "Lähetä muutokset"
 msgid "Available contests"
 msgstr "Kilpailuluettelo"
 
-#: templates/index.html:9
+#: templates/index.html:8
 msgid ""
 "\n"
 "    Below is a list of all contests on this site.\n"
@@ -306,29 +306,26 @@ msgstr ""
 "\n"
 "Alla on luettelo kaikista tämän sivuston kilpailuista."
 
-#: templates/index.html:13
-#, fuzzy
+#: templates/index.html:12
 msgid ""
 "\n"
 "    There are currently no contests on this site.\n"
 "    "
-msgstr "\nTällä sivustolla ei ole yhtään kilpailua."
+msgstr ""
+"\n"
+"Tällä sivustolla ei ole yhtään kilpailua."
 
-#: templates/index.html:19
+#: templates/index.html:18
 msgid "Current contests"
 msgstr "Käynnissä olevat kilpailut"
 
-#: templates/index.html:35
+#: templates/index.html:34
 msgid "Upcoming contests"
 msgstr "Tulossa olevat kilpailut"
 
-#: templates/index.html:51
+#: templates/index.html:50
 msgid "Past contests"
 msgstr "Päättyneet kilpailut"
-
-#: templates/index.html:65
-msgid "Create a new contest"
-msgstr "Luo uusi kilpailu"
 
 #: templates/pagebody.html:12
 msgid "Log out"
@@ -345,6 +342,10 @@ msgstr "Rekisteröidy"
 #: templates/pagebody.html:25
 msgid "Home"
 msgstr "Etusivu"
+
+#: templates/pagebody.html:27
+msgid "Create a new contest"
+msgstr "Luo uusi kilpailu"
 
 #: templates/results.html:10
 msgid "Others"
@@ -399,6 +400,7 @@ msgstr ""
 "voi ottaa sinuun yhteyttä kilpailun jälkeen."
 
 #: templates/registration/register.html:22
+#, fuzzy
 msgid ""
 "\n"
 "    If you wish to organize contests on this site in addition to\n"
@@ -406,11 +408,12 @@ msgid ""
 "    organizer. An administrator will, at some point after your\n"
 "    registration, give you the appropriate access. When you have been\n"
 "    given permission to organize contests, you will have an additional\n"
-"    selection on the home page to create a new contest.\n"
+"    selection on the left-side menu to create a new contest.\n"
 "    "
 msgstr ""
 "\n"
 "Jos haluat osallistumisen lisäksi myös järjestää kilpailuja tällä\n"
 "sivustolla, merkitse Kilpailujärjestäjäpyyntö-kohta, ja sivuston\n"
 "ylläpitäjä antaa sinulle tarvittavat oikeudet. Kun olet saanut luvan\n"
-"järjestää kilpailuja, voit luoda uuden kilpailun etusivulta käsin."
+"järjestää kilpailuja, vasemman laidan valikossa on mahdollisuus luoda\n"
+"uusi kilpailu."

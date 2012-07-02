@@ -57,8 +57,7 @@ def index(request):
     return render_to_response('index.html',
                               { 'running_contest_list': running_contest_list,
                                 'future_contest_list': future_contest_list,
-                                'past_contest_list': past_contest_list,
-                                'creatable': request.user.has_perm('app.add_contest') },
+                                'past_contest_list': past_contest_list },
                               context_instance=RequestContext(request))
 
 def register(request):
