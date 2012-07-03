@@ -5,7 +5,7 @@ import os, sys
 django_root = os.path.join('/', 'var', 'django')
 
 sys.path.append(django_root)
-sys.path.append(os.path.join(django_root, 'penguz')
+sys.path.append(os.path.join(django_root, 'penguz'))
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'penguz.settings'
 
