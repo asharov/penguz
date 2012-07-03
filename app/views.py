@@ -20,6 +20,9 @@ from penguz.app.forms import RegisterForm, AnswerForm, ContestForm, PuzzleForm, 
 
 logger = logging.getLogger(__name__)
 
+def total_seconds(delta):
+    return (delta.microseconds + (delta.seconds + delta.days * 24 * 3600) * 10**6) / 10**6
+
 def has_ended(now, contest, participation):
     time = timedelta(minutes=contest.duration)
     return contest.end_time < now or (participation and participation[0].start_time + time < now)
@@ -114,7 +117,7 @@ def contest(request, contest_id):
         return render_to_response('contestover.html', { 'contest': contest },
                                   context_instance=RequestContext(request))
     elif participation:
-        spent_time = (now - participation[0].start_time).total_seconds()
+        spent_time = total_seconds(now - participation[0].start_time)
         difference = int(contest.duration * 60 - spent_time)
         puzzles = Puzzle.objects.filter(contest__exact=contest_id)
         answer_set = Answer.objects.filter(participation=participation[0].id)
@@ -166,8 +169,8 @@ def results(request, contest_id):
                     total_score += score;
                 else:
                     scores.append('-')
-            spent_time = int((participation.last_submission
-                              - participation.start_time).total_seconds())
+            spent_time = int(total_seconds(participation.last_submission
+                                           - participation.start_time))
             profile = UserProfile.objects.get(user=participation.user)
             answer = { 'profile': profile,
                        'spent_minutes': spent_time / 60,
