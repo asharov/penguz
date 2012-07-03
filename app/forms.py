@@ -38,8 +38,6 @@ class RegisterForm(forms.Form):
         if not user.first_name:
             user.first_name = user.username
         profile = models.UserProfile(user=user, country=data.get('country'))
-        if data.get('organizer'):
-            print "ORGANIZER REQUEST", user.username
         user.save()
         profile.save()
 
