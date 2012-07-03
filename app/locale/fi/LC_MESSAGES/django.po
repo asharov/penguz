@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-03 18:20+0200\n"
-"PO-Revision-Date: 2012-07-03 18:22+0200\n"
+"POT-Creation-Date: 2012-07-03 20:16+0200\n"
+"PO-Revision-Date: 2012-07-03 20:17+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -137,13 +137,21 @@ msgstr "Ratkaisun rivien määrä"
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
-#: views.py:76
+#: views.py:79
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:236 views.py:261 views.py:281
+#: views.py:239 views.py:264 views.py:284
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
+
+#: templates/404.html:6
+#, fuzzy
+msgid ""
+"\n"
+"    The page you tried to reach does not exist.\n"
+"    "
+msgstr "\nYritit mennä sivulle, jota ei ole olemassa."
 
 #: templates/addpuzzles.html:6
 msgid ""
@@ -338,6 +346,9 @@ msgid ""
 "    organized on this site.\n"
 "    "
 msgstr ""
+"\n"
+"Nämä ovat kilpailut joihin olet osallistunut tai jotka olet\n"
+"järjestänyt tällä sivustolla."
 
 #: templates/own.html:13
 msgid "Contests as participant"
