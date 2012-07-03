@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-02 18:41+0200\n"
-"PO-Revision-Date: 2012-07-02 18:42+0200\n"
+"POT-Creation-Date: 2012-07-03 18:20+0200\n"
+"PO-Revision-Date: 2012-07-03 18:22+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -48,35 +48,35 @@ msgstr "Kilpailujärjestäjäpyyntö"
 msgid "Passwords do not match"
 msgstr "Salasanat eivät ole samat"
 
-#: forms.py:112
+#: forms.py:110
 msgid "Solution minimum length"
 msgstr "Ratkaisun minimipituus"
 
-#: forms.py:114
+#: forms.py:112
 msgid "Solution maximum length"
 msgstr "Ratkaisun maksimipituus"
 
-#: forms.py:116
+#: forms.py:114
 msgid "First allowed character"
 msgstr "Ensimmäinen sallittu merkki"
 
-#: forms.py:118
+#: forms.py:116
 msgid "Last allowed character"
 msgstr "Viimeinen sallittu merkki"
 
-#: forms.py:120
+#: forms.py:118
 msgid "Additional allowed characters"
 msgstr "Ylimääräiset sallitut merkit"
 
-#: forms.py:122
+#: forms.py:120
 msgid "No repetition"
 msgstr "Toisto kielletty"
 
-#: forms.py:134
+#: forms.py:132
 msgid "Minimum length must not be larger than maximum length"
 msgstr "Minimipituus ei saa olla maksimipituutta suurempi"
 
-#: forms.py:138
+#: forms.py:136
 msgid "First allowed character must come before the last allowed character"
 msgstr ""
 "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
@@ -141,7 +141,7 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:221 views.py:246 views.py:266
+#: views.py:236 views.py:261 views.py:281
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -327,6 +327,38 @@ msgstr "Tulossa olevat kilpailut"
 msgid "Past contests"
 msgstr "Päättyneet kilpailut"
 
+#: templates/own.html:5
+msgid "Own contests"
+msgstr "Omat kilpailut"
+
+#: templates/own.html:7
+msgid ""
+"\n"
+"    These are all the contests you have participated in or have\n"
+"    organized on this site.\n"
+"    "
+msgstr ""
+
+#: templates/own.html:13
+msgid "Contests as participant"
+msgstr "Kilpailut osanottajana"
+
+#: templates/own.html:24
+msgid "Organized contests"
+msgstr "Kilpailut järjestäjänä"
+
+#: templates/own.html:32 templates/own.html.py:44
+msgid "Edit contest"
+msgstr "Muokkaa kilpailua"
+
+#: templates/own.html:33
+msgid "Add puzzles"
+msgstr "Lisää tehtävät"
+
+#: templates/own.html:45
+msgid "Edit puzzles"
+msgstr "Muokkaa tehtäviä"
+
 #: templates/pagebody.html:12
 msgid "Log out"
 msgstr "Kirjaudu ulos"
@@ -344,6 +376,10 @@ msgid "Home"
 msgstr "Etusivu"
 
 #: templates/pagebody.html:27
+msgid "My contests"
+msgstr "Omat kilpailut"
+
+#: templates/pagebody.html:30
 msgid "Create a new contest"
 msgstr "Luo uusi kilpailu"
 
@@ -400,7 +436,6 @@ msgstr ""
 "voi ottaa sinuun yhteyttä kilpailun jälkeen."
 
 #: templates/registration/register.html:22
-#, fuzzy
 msgid ""
 "\n"
 "    If you wish to organize contests on this site in addition to\n"
