@@ -2,5 +2,4 @@
 *.pot
 *.pyc
 *~
-media
 local_settings.py
