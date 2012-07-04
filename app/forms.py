@@ -59,18 +59,24 @@ class AnswerWidget(forms.MultiWidget):
             return [''] * self.size
 
     def format_output(self, rendered_widgets):
-        result = u'<table>'
+        result = u''
         i = 0
         for widget in rendered_widgets:
-            result += u'<tr>'
+            if i > 0:
+                result += u'</tr><tr>'
             result += u'<td>' + self.names[i] +  u'</td>'
             result += u'<td>' + widget + u'</td>'
-            result += u'</tr>'
             i += 1
-        result += u'</table>'
         return result
 
-class AnswerField(forms.MultiValueField):
+class AnswerSize(object):
+    def get_size(self):
+        return self._size
+    def set_size(self, value):
+        self._size = value
+    size = property(get_size, set_size)
+
+class AnswerField(forms.MultiValueField, AnswerSize):
 
     def __init__(self, size=1, names=['Answer'], *args, **kwargs):
         self.widget = AnswerWidget(size, names)
@@ -97,6 +103,7 @@ class AnswerForm(forms.Form):
             names = puzzle.solution_row_names.split(',')
             field = AnswerField(puzzle.solution_row_count, names,
                                 label=puzzle.name, required=False)
+            field.size = puzzle.solution_row_count
             if puzzle.id in answers:
                 field.initial = answers[puzzle.id]
             self.fields['answer_{0}'.format(puzzle.id)] = field

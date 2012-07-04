@@ -4,14 +4,20 @@
 {% block password %}{{contest.password}}{% endblock %}
 
 {% block content %}
-<hr>
-<form action="/answer/{{contest.id}}/" method="post">
-    {% csrf_token %}
-    <table class="form" id="answer_submission_form">
-      {{ form.as_table }}
-    </table>
-    <button name="answer" type="submit">{% trans "Submit answers" %}</button>
-</form>
+  <hr>
+    <form action="/answer/{{contest.id}}/" method="post">
+      {% csrf_token %}
+      <table class="form" id="answer_submission_form">
+	{{ form.non_field_errors }}
+	{% for field in form %}
+	<tr>
+	  <th rowspan="{{field.field.size}}">{{ field.label_tag }}</th>
+	  {{ field }}
+	</tr>
+	{% endfor %}
+      </table>
+      <button name="answer" type="submit">{% trans "Submit answers" %}</button>
+    </form>
 {% endblock %}
 
 {% block pagescript %}
