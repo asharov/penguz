@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-03 20:16+0200\n"
-"PO-Revision-Date: 2012-07-03 20:17+0200\n"
+"POT-Creation-Date: 2012-07-04 22:33+0200\n"
+"PO-Revision-Date: 2012-07-04 22:33+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -48,35 +48,35 @@ msgstr "Kilpailujärjestäjäpyyntö"
 msgid "Passwords do not match"
 msgstr "Salasanat eivät ole samat"
 
-#: forms.py:110
+#: forms.py:117
 msgid "Solution minimum length"
 msgstr "Ratkaisun minimipituus"
 
-#: forms.py:112
+#: forms.py:119
 msgid "Solution maximum length"
 msgstr "Ratkaisun maksimipituus"
 
-#: forms.py:114
+#: forms.py:121
 msgid "First allowed character"
 msgstr "Ensimmäinen sallittu merkki"
 
-#: forms.py:116
+#: forms.py:123
 msgid "Last allowed character"
 msgstr "Viimeinen sallittu merkki"
 
-#: forms.py:118
+#: forms.py:125
 msgid "Additional allowed characters"
 msgstr "Ylimääräiset sallitut merkit"
 
-#: forms.py:120
+#: forms.py:127
 msgid "No repetition"
 msgstr "Toisto kielletty"
 
-#: forms.py:132
+#: forms.py:139
 msgid "Minimum length must not be larger than maximum length"
 msgstr "Minimipituus ei saa olla maksimipituutta suurempi"
 
-#: forms.py:136
+#: forms.py:143
 msgid "First allowed character must come before the last allowed character"
 msgstr ""
 "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
@@ -137,21 +137,26 @@ msgstr "Ratkaisun rivien määrä"
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
-#: views.py:79
+#: views.py:81
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:239 views.py:264 views.py:284
+#: views.py:158
+msgid "You are not yet allowed to see the results of this contest"
+msgstr "Et saa vielä nähdä tämän kilpailun tuloksia"
+
+#: views.py:243 views.py:270 views.py:290
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
 #: templates/404.html:6
-#, fuzzy
 msgid ""
 "\n"
 "    The page you tried to reach does not exist.\n"
 "    "
-msgstr "\nYritit mennä sivulle, jota ei ole olemassa."
+msgstr ""
+"\n"
+"Yritit mennä sivulle, jota ei ole olemassa."
 
 #: templates/addpuzzles.html:6
 msgid ""
@@ -241,31 +246,31 @@ msgstr "Tulokset"
 msgid "Contest over"
 msgstr "Kilpailu ohi"
 
-#: templates/contestrunning.html:13
+#: templates/contestrunning.html:19
 msgid "Submit answers"
 msgstr "Lähetä vastaukset"
 
-#: templates/contestrunning.html:19
+#: templates/contestrunning.html:25
 msgid "Answer must be {0} characters long"
 msgstr "Vastauksen on oltava {0} merkkiä pitkä"
 
-#: templates/contestrunning.html:20
+#: templates/contestrunning.html:26
 msgid "Answer must be between {0} and {1} characters long"
 msgstr "Vastauksen on oltava {0}-{1} merkkiä pitkä"
 
-#: templates/contestrunning.html:21
+#: templates/contestrunning.html:27
 msgid "Allowed characters are {0}-{1} and {2}"
 msgstr "Sallitut merkit ovat {0}-{1} ja {2}"
 
-#: templates/contestrunning.html:22
+#: templates/contestrunning.html:28
 msgid "Allowed characters are {0}-{1}"
 msgstr "Sallitut merkit ovat {0}-{1}"
 
-#: templates/contestrunning.html:23
+#: templates/contestrunning.html:29
 msgid "Allowed characters are {0}"
 msgstr "Sallitut merkit ovat {0}"
 
-#: templates/contestrunning.html:24
+#: templates/contestrunning.html:30
 msgid "All characters must be different"
 msgstr "Kaikkien merkkien on oltava erilaisia"
 
