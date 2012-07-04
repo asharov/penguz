@@ -48,10 +48,12 @@ fi.iki.ashar.Penguz = function() {
 	    parsed.maxChar = array[1].charAt(2);
 	    allowed = array[1].substring(0, 3);
 	    array[1] = array[1].slice(3);
+	} else if (array[1].charAt(0) === '-') {
+	    array[1] = array[1].slice(1);
 	}
         var i = array[1].indexOf('-');
         if (i >= 0 && i < array[1].length - 1) {
-            array[1].slice(i, 1);
+	    array[1] = array[1].substring(0, i) + array[1].substring(i + 1);
             array[1] += '-';
         }
 	allowed += array[1];
@@ -73,7 +75,6 @@ fi.iki.ashar.Penguz = function() {
 	return true;
     }
     function checkField(pattern, value) {
-	console.log('CHECK', pattern, value);
 	if (value.length > 0) {
 	    if (value.length < pattern.minLength
 		|| value.length > pattern.maxLength) {
@@ -140,7 +141,6 @@ fi.iki.ashar.Penguz = function() {
 	    $('table[id=answer_submission_form]').
 		find('input[id^=id_answer_]').
 		each(function (i) {
-		    console.log(i, this, $(this).attr('id'));
 		    var match = re.exec($(this).attr('id'));
 		    if (match) {
 			$(this).after('<span class="invalid-input-note"></span>');
@@ -153,7 +153,6 @@ fi.iki.ashar.Penguz = function() {
 			    } else {
 				delete invalidInputs[match[0]];
 			    }
-			    console.log(invalidInputs);
 			    if (invalidInputs.isEmpty()) {
 				submitButton.removeAttr('disabled');
 			    } else {

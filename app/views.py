@@ -248,7 +248,9 @@ def addpuzzles(request, contest_id):
             puzzle = form.save(commit=False)
             puzzle.contest = contest
             puzzle.number = i
-            puzzle.solution_pattern = "{0}-{1} {2}-{3}{4}".format(data['min_length'], data['max_length'], data['min_char'], data['max_char'], data['extra_chars'])
+            min_length = data['min_length'] if data['min_length'] else ''
+            max_length = data['max_length'] if data['max_length'] else ''
+            puzzle.solution_pattern = "{0}-{1} {2}-{3}{4}".format(min_length, max_length, data['min_char'], data['max_char'], data['extra_chars'])
             if data['pattern_unique']:
                 puzzle.solution_pattern += ' !'
             puzzle.save()
