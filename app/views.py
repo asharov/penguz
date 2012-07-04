@@ -67,7 +67,9 @@ def register(request):
     form = RegisterForm(request.POST or None)
     if form.is_valid():
         data = form.cleaned_data
-        logger.info(u"Register user {0}".format(data))
+        logger.info(u"Register user {0} {1} {2}".format(data['username'],
+                                                        data['email'],
+                                                        data['organizer']))
         if not User.objects.filter(username=data['username']).exists():
             form.save()
             new_user = authenticate(username=data['username'],
