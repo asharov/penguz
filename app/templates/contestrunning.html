@@ -5,6 +5,17 @@
 
 {% block content %}
   <hr>
+    {% if answer_count %}
+    <p class="submit-notify">
+      {% blocktrans count value=answer_count %}
+      1 answer submitted.
+      {% plural %}
+      {{ value }} answers submitted.
+      {% endblocktrans %}
+      {% trans "Time of latest submission" %}:
+      {{participation.last_submission|time:"TIME_FORMAT"}}
+    </p>
+    {% endif %}
     <form action="/answer/{{contest.id}}/" method="post">
       {% csrf_token %}
       <table class="form" id="answer_submission_form">

@@ -69,3 +69,7 @@ table.list th, table.list td {
 table.form th {
     text-align: left;
 }
+
+p.submit-notify {
+    font-size: small;
+}

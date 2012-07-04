@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-04 22:33+0200\n"
-"PO-Revision-Date: 2012-07-04 22:33+0200\n"
+"POT-Creation-Date: 2012-07-04 23:12+0200\n"
+"PO-Revision-Date: 2012-07-04 23:12+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -141,11 +141,11 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:158
+#: views.py:161
 msgid "You are not yet allowed to see the results of this contest"
 msgstr "Et saa vielä nähdä tämän kilpailun tuloksia"
 
-#: views.py:243 views.py:270 views.py:290
+#: views.py:246 views.py:273 views.py:293
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -246,31 +246,52 @@ msgstr "Tulokset"
 msgid "Contest over"
 msgstr "Kilpailu ohi"
 
-#: templates/contestrunning.html:19
+#: templates/contestrunning.html:10
+#, python-format
+msgid ""
+"\n"
+"      1 answer submitted.\n"
+"      "
+msgid_plural ""
+"\n"
+"      %(value)s answers submitted.\n"
+"      "
+msgstr[0] ""
+"\n"
+"1 vastaus lähetetty."
+msgstr[1] ""
+"\n"
+"%(value)s vastausta lähetetty."
+
+#: templates/contestrunning.html:15
+msgid "Time of latest submission"
+msgstr "Viimeisimmän lähetyksen aika"
+
+#: templates/contestrunning.html:30
 msgid "Submit answers"
 msgstr "Lähetä vastaukset"
 
-#: templates/contestrunning.html:25
+#: templates/contestrunning.html:36
 msgid "Answer must be {0} characters long"
 msgstr "Vastauksen on oltava {0} merkkiä pitkä"
 
-#: templates/contestrunning.html:26
+#: templates/contestrunning.html:37
 msgid "Answer must be between {0} and {1} characters long"
 msgstr "Vastauksen on oltava {0}-{1} merkkiä pitkä"
 
-#: templates/contestrunning.html:27
+#: templates/contestrunning.html:38
 msgid "Allowed characters are {0}-{1} and {2}"
 msgstr "Sallitut merkit ovat {0}-{1} ja {2}"
 
-#: templates/contestrunning.html:28
+#: templates/contestrunning.html:39
 msgid "Allowed characters are {0}-{1}"
 msgstr "Sallitut merkit ovat {0}-{1}"
 
-#: templates/contestrunning.html:29
+#: templates/contestrunning.html:40
 msgid "Allowed characters are {0}"
 msgstr "Sallitut merkit ovat {0}"
 
-#: templates/contestrunning.html:30
+#: templates/contestrunning.html:41
 msgid "All characters must be different"
 msgstr "Kaikkien merkkien on oltava erilaisia"
 
