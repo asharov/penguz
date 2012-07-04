@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-04 23:12+0200\n"
-"PO-Revision-Date: 2012-07-04 23:12+0200\n"
+"POT-Creation-Date: 2012-07-04 23:49+0200\n"
+"PO-Revision-Date: 2012-07-04 23:50+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -400,11 +400,11 @@ msgstr "Muokkaa tehtäviä"
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
-#: templates/pagebody.html:14 templates/registration/login.html:12
+#: templates/pagebody.html:14 templates/registration/login.html:17
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-#: templates/pagebody.html:15 templates/registration/register.html:36
+#: templates/pagebody.html:15 templates/registration/register.html:42
 msgid "Register"
 msgstr "Rekisteröidy"
 
@@ -444,6 +444,16 @@ msgstr "Pisteet"
 msgid "Time"
 msgstr "Aika"
 
+#: templates/registration/login.html:7
+msgid ""
+"\n"
+"    Logging in uses cookies, so they need to be allowed for this site.\n"
+"    "
+msgstr ""
+"\n"
+"Sisäänkirjautumisessa käytetään evästeitä, joten niiden tulee olla\n"
+"sallittuina tälle sivustolle."
+
 #: templates/registration/register.html:7
 msgid ""
 "\n"
@@ -473,6 +483,17 @@ msgstr ""
 "voi ottaa sinuun yhteyttä kilpailun jälkeen."
 
 #: templates/registration/register.html:22
+msgid ""
+"\n"
+"    Logging in also uses cookies, so they need to be allowed for this\n"
+"    site.\n"
+"    "
+msgstr ""
+"\n"
+"Sisäänkirjautuminen myös käyttää evästeitä, joten niiden tulee olla\n"
+"sallittuina tälle sivustolle."
+
+#: templates/registration/register.html:28
 msgid ""
 "\n"
 "    If you wish to organize contests on this site in addition to\n"

@@ -3,6 +3,11 @@
 
 {% block loginarea %}{% endblock %}
 {% block pagecontent %}
+  <p>
+    {% blocktrans %}
+    Logging in uses cookies, so they need to be allowed for this site.
+    {% endblocktrans %}
+  </p>
   <form action="{% url django.contrib.auth.views.login %}" method="post">
     {% csrf_token %}
     <table class="form">
