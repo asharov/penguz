@@ -102,8 +102,7 @@ def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
     now = datetime.now()
-    if (now < contest.start_time or
-        not request.user.is_authenticated()):
+    if now < contest.start_time:
         return render_to_response('contest.html',
                                   { 'contest': contest,
                                     'minutes': contest.duration,
@@ -117,6 +116,12 @@ def contest(request, contest_id):
                                   context_instance=RequestContext(request))
     elif has_ended(now, contest, participation):
         return render_to_response('contestover.html', { 'contest': contest },
+                                  context_instance=RequestContext(request))
+    elif not request.user.is_authenticated():
+        return render_to_response('contestguest.html',
+                                  { 'contest': contest,
+                                    'minutes': contest.duration,
+                                    'seconds': '00' },
                                   context_instance=RequestContext(request))
     elif participation:
         spent_time = total_seconds(now - participation[0].start_time)

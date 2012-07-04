@@ -1,0 +1,14 @@
+{% extends "contest.html" %}
+{% load i18n %}
+
+{% block content %}
+{% url django.contrib.auth.views.login as login_url %}
+{% url app.views.register as register_url %}
+  <p>
+    {% blocktrans %}
+    You will need to <a href="{{login_url}}">log in</a> before you can
+    start the contest. If you do not yet have an account on this site,
+    you need to <a href="{{register_url}}">register first</a>.
+    {% endblocktrans %}
+  </p>
+{% endblock %}

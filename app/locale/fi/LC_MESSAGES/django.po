@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-04 23:49+0200\n"
-"PO-Revision-Date: 2012-07-04 23:50+0200\n"
+"POT-Creation-Date: 2012-07-04 23:59+0200\n"
+"PO-Revision-Date: 2012-07-05 00:00+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -141,11 +141,11 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:161
+#: views.py:166
 msgid "You are not yet allowed to see the results of this contest"
 msgstr "Et saa vielä nähdä tämän kilpailun tuloksia"
 
-#: views.py:246 views.py:273 views.py:293
+#: views.py:251 views.py:278 views.py:298
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -241,6 +241,22 @@ msgstr "Jäljellä oleva aika"
 #: templates/contestauthor.html:9 templates/contestover.html:9
 msgid "See the results"
 msgstr "Tulokset"
+
+#: templates/contestguest.html:8
+#, python-format
+msgid ""
+"\n"
+"    You will need to <a href=\"%(login_url)s\">log in</a> before you can\n"
+"    start the contest. If you do not yet have an account on this site,\n"
+"    you need to <a href=\"%(register_url)s\">register first</a>.\n"
+"    "
+msgstr ""
+"\n"
+"    Sinun on <a href=\"%(login_url)s\">kirjauduttava sisään</a> ennen\n"
+"    kuin voit aloittaa kilpailun. Jos et ole vielä luonut itsellesi\n"
+"    tunnusta tälle sivustolle, sinun on ensin <a\n"
+"    href=\"%(register_url)s\">rekisteröidyttävä</a>.\n"
+"    "
 
 #: templates/contestover.html:5
 msgid "Contest over"
