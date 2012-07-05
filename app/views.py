@@ -102,26 +102,25 @@ def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
     now = datetime.now()
+    context = { 'contest': contest,
+                'minutes': contest.duration,
+                'seconds': '00',
+                'now': now }
     if now < contest.start_time:
         return render_to_response('contest.html',
-                                  { 'contest': contest,
-                                    'minutes': contest.duration,
-                                    'seconds': '00' },
+                                  context,
                                   context_instance=RequestContext(request))
     elif contest.organizer == request.user:
         return render_to_response('contestauthor.html',
-                                  { 'contest': contest,
-                                    'minutes': contest.duration,
-                                    'seconds': '00' },
+                                  context,
                                   context_instance=RequestContext(request))
     elif has_ended(now, contest, participation):
-        return render_to_response('contestover.html', { 'contest': contest },
+        return render_to_response('contestover.html',
+                                  context,
                                   context_instance=RequestContext(request))
     elif not request.user.is_authenticated():
         return render_to_response('contestguest.html',
-                                  { 'contest': contest,
-                                    'minutes': contest.duration,
-                                    'seconds': '00' },
+                                  context,
                                   context_instance=RequestContext(request))
     elif participation:
         spent_time = total_seconds(now - participation[0].start_time)
@@ -132,20 +131,18 @@ def contest(request, contest_id):
         answers = dict([(answer.puzzle.id, answer.answer) for answer in answer_set])
         form = AnswerForm(puzzles=puzzles, answers=answers)
         patterns = puzzles.values('id', 'solution_pattern')
+        context.update({ 'form': form,
+                         'participation': participation[0],
+                         'answer_count': non_empty_answers.count(),
+                         'minutes': difference / 60,
+                         'seconds': '%02d' % (difference % 60),
+                         'patterns': patterns })
         return render_to_response('contestrunning.html',
-                                  { 'contest': contest,
-                                    'form': form,
-                                    'participation': participation[0],
-                                    'answer_count': non_empty_answers.count(),
-                                    'minutes': difference / 60,
-                                    'seconds': '%02d' % (difference % 60),
-                                    'patterns': patterns },
+                                  context,
                                   context_instance=RequestContext(request))
     else:
         return render_to_response('conteststart.html',
-                                  { 'contest': contest,
-                                    'minutes': contest.duration,
-                                    'seconds': '00' },
+                                  context,
                                   context_instance=RequestContext(request))
 
 def start(request, contest_id):
@@ -242,7 +239,8 @@ def create(request):
         return HttpResponseRedirect(format_url("addpuzzles", contest))
     else:
         return render_to_response("create.html",
-                                  { 'form': form },
+                                  { 'form': form,
+                                    'now': datetime.now() },
                                   context_instance=RequestContext(request))
 
 def addpuzzles(request, contest_id):

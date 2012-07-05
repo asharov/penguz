@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-04 23:59+0200\n"
-"PO-Revision-Date: 2012-07-05 00:00+0200\n"
+"POT-Creation-Date: 2012-07-05 22:07+0200\n"
+"PO-Revision-Date: 2012-07-05 22:07+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Koko nimi"
 msgid "Nationality"
 msgstr "Kansalaisuus"
 
-#: forms.py:18 models.py:31 templates/contest.html:21
+#: forms.py:18 models.py:31 templates/contest.html:31
 msgid "Password"
 msgstr "Salasana"
 
@@ -93,7 +93,7 @@ msgstr "Kuvaus"
 msgid "Instruction booklet"
 msgstr "Ohjeet"
 
-#: models.py:28 templates/contest.html:17
+#: models.py:28 templates/contest.html:27
 msgid "Contest booklet"
 msgstr "Kilpailutehtävät"
 
@@ -141,11 +141,11 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:166
+#: views.py:163
 msgid "You are not yet allowed to see the results of this contest"
 msgstr "Et saa vielä nähdä tämän kilpailun tuloksia"
 
-#: views.py:251 views.py:278 views.py:298
+#: views.py:249 views.py:276 views.py:296
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -210,31 +210,47 @@ msgstr "Tehtävä %(value)s"
 msgid "Set puzzles"
 msgstr "Lisää tehtävät"
 
-#: templates/contest.html:8 templates/index.html:43
+#: templates/contest.html:9
+msgid ""
+"\n"
+"    The current server time is provided to help determine the exact\n"
+"    hours of the contest period. It is not updated constantly, only on\n"
+"    page refresh.\n"
+"    "
+msgstr ""
+"\n"
+"Palvelimen aika auttaa määrittämään milloin varsinainen kilpailuaika\n"
+"on. Se päivittyy ainoastaan sivun uudelleenlatauksella."
+
+#: templates/contest.html:16 templates/index.html:43
 msgid "Contest period starts"
 msgstr "Kilpailuaika alkaa"
 
-#: templates/contest.html:9 templates/index.html:27
+#: templates/contest.html:17 templates/index.html:27
 msgid "Contest period ends"
 msgstr "Kilpailuaika päättyy"
 
-#: templates/contest.html:12
+#: templates/contest.html:18
+msgid "Current server time"
+msgstr "Palvelimen aika nyt"
+
+#: templates/contest.html:22
 msgid "Instructions"
 msgstr "Ohjeet"
 
-#: templates/contest.html:14
+#: templates/contest.html:24
 msgid "Instructions not yet available"
 msgstr "Ohjeet eivät ole vielä saatavilla"
 
-#: templates/contest.html:19
+#: templates/contest.html:29
 msgid "Contest booklet not yet available"
 msgstr "Kilpailutehtävät eivät ole vielä saatavilla"
 
-#: templates/contest.html:23
+#: templates/contest.html:33
 msgid "Will be revealed when you start"
 msgstr "Näytetään tässä aloitettuasi"
 
-#: templates/contest.html:25
+#: templates/contest.html:35
 msgid "Time remaining"
 msgstr "Jäljellä oleva aika"
 
@@ -335,7 +351,19 @@ msgstr ""
 "mestaruuskilpailuja, joissa yhden maan edustajat tarvitsee erotella\n"
 "tuloksissa, anna myös kilpailumaa."
 
-#: templates/create.html:21
+#: templates/create.html:17
+#, python-format
+msgid ""
+"\n"
+"    The start and end times are determined based on the server time.\n"
+"    The current server time is %(now)s.\n"
+"    "
+msgstr ""
+"\n"
+"Alkamis- ja päättymisaika määräytyvät palvelimen ajan mukaan.\n"
+"Palvelimen aika nyt on %(now)s."
+
+#: templates/create.html:27
 msgid "Create contest"
 msgstr "Luo kilpailu"
 

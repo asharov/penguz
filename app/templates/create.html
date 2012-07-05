@@ -13,6 +13,12 @@
     championships), set the country, otherwise leave it blank.
     {% endblocktrans %}
   </p>
+  <p>
+    {% blocktrans %}
+    The start and end times are determined based on the server time.
+    The current server time is {{now}}.
+    {% endblocktrans %}
+  </p>
   <form action="/create" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table class="form">

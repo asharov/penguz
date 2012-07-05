@@ -5,8 +5,18 @@
   <h2>{{contest.name}}</h2>
   <p>{{contest.description}}</p>
   <hr>
+  <p class="extra-information">
+    {% blocktrans %}
+    The current server time is provided to help determine the exact
+    hours of the contest period. It is not updated constantly, only on
+    page refresh.
+    {% endblocktrans %}
+  </p>
+  <p>
   {% trans "Contest period starts" %}: {{contest.start_time}}<br>
   {% trans "Contest period ends" %}: {{contest.end_time}}<br>
+  {% trans "Current server time" %}: {{now}}
+  </p>
   <hr>
   {% if contest.instruction_booklet %}
   <a href="{{contest.instruction_booklet.url}}">{% trans "Instructions" %}</a>

@@ -47,11 +47,11 @@
 }
 
 .extra-information {
-    font-size: x-small;
+    font-size: small;
 }
 
 .invalid-input-note {
-    font-size: xx-small;
+    font-size: x-small;
     color: Crimson;
     padding: 0px 10px;
 }
@@ -68,8 +68,4 @@ table.list th, table.list td {
 
 table.form th {
     text-align: left;
-}
-
-p.submit-notify {
-    font-size: small;
 }
