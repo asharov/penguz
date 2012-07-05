@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-05 22:07+0200\n"
-"PO-Revision-Date: 2012-07-05 22:07+0200\n"
+"POT-Creation-Date: 2012-07-05 22:39+0200\n"
+"PO-Revision-Date: 2012-07-05 22:41+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Koko nimi"
 msgid "Nationality"
 msgstr "Kansalaisuus"
 
-#: forms.py:18 models.py:31 templates/contest.html:31
+#: forms.py:18 models.py:31 templates/contest.html:44
 msgid "Password"
 msgstr "Salasana"
 
@@ -93,7 +93,7 @@ msgstr "Kuvaus"
 msgid "Instruction booklet"
 msgstr "Ohjeet"
 
-#: models.py:28 templates/contest.html:27
+#: models.py:28 templates/contest.html:40
 msgid "Contest booklet"
 msgstr "Kilpailutehtävät"
 
@@ -206,11 +206,29 @@ msgstr ""
 msgid "Puzzle %(value)s"
 msgstr "Tehtävä %(value)s"
 
-#: templates/addpuzzles.html:39
+#: templates/addpuzzles.html:40
 msgid "Set puzzles"
 msgstr "Lisää tehtävät"
 
-#: templates/contest.html:9
+#: templates/contest.html:10
+msgid ""
+"\n"
+"\tUsing a Javascript-capable browser and turning on Javascript\n"
+"\tis recommended, as then your remaining contest time is updated\n"
+"\tcontinuously, and some basic syntax checks are performed on\n"
+"\tyour answers to eliminate certain typos. But Javascript is not\n"
+"\tnecessary; you can participate fully in the contest without it\n"
+"\tenabled.\n"
+"\t"
+msgstr ""
+"\n"
+"On suositeltavaa käyttää selainta, joka tuntee Javascriptin, ja\n"
+"kääntää Javascript päälle. Tämä mahdollistaa jäljellä olevan ajan\n"
+"jatkuvan päivityksen ja vastausten etukäteistarkistuksen, joka\n"
+"merkitsee jotkin kirjoitusvirheet. Javascript ei kuitenkaan ole\n"
+"pakollinen; voit osallistua kilpailuun ilmankin."
+
+#: templates/contest.html:22
 msgid ""
 "\n"
 "    The current server time is provided to help determine the exact\n"
@@ -222,35 +240,35 @@ msgstr ""
 "Palvelimen aika auttaa määrittämään milloin varsinainen kilpailuaika\n"
 "on. Se päivittyy ainoastaan sivun uudelleenlatauksella."
 
-#: templates/contest.html:16 templates/index.html:43
+#: templates/contest.html:29 templates/index.html:43
 msgid "Contest period starts"
 msgstr "Kilpailuaika alkaa"
 
-#: templates/contest.html:17 templates/index.html:27
+#: templates/contest.html:30 templates/index.html:27
 msgid "Contest period ends"
 msgstr "Kilpailuaika päättyy"
 
-#: templates/contest.html:18
+#: templates/contest.html:31
 msgid "Current server time"
 msgstr "Palvelimen aika nyt"
 
-#: templates/contest.html:22
+#: templates/contest.html:35
 msgid "Instructions"
 msgstr "Ohjeet"
 
-#: templates/contest.html:24
+#: templates/contest.html:37
 msgid "Instructions not yet available"
 msgstr "Ohjeet eivät ole vielä saatavilla"
 
-#: templates/contest.html:29
+#: templates/contest.html:42
 msgid "Contest booklet not yet available"
 msgstr "Kilpailutehtävät eivät ole vielä saatavilla"
 
-#: templates/contest.html:33
+#: templates/contest.html:46
 msgid "Will be revealed when you start"
 msgstr "Näytetään tässä aloitettuasi"
 
-#: templates/contest.html:35
+#: templates/contest.html:48
 msgid "Time remaining"
 msgstr "Jäljellä oleva aika"
 
@@ -299,35 +317,35 @@ msgstr[1] ""
 msgid "Time of latest submission"
 msgstr "Viimeisimmän lähetyksen aika"
 
-#: templates/contestrunning.html:30
+#: templates/contestrunning.html:31
 msgid "Submit answers"
 msgstr "Lähetä vastaukset"
 
-#: templates/contestrunning.html:36
+#: templates/contestrunning.html:38
 msgid "Answer must be {0} characters long"
 msgstr "Vastauksen on oltava {0} merkkiä pitkä"
 
-#: templates/contestrunning.html:37
+#: templates/contestrunning.html:39
 msgid "Answer must be between {0} and {1} characters long"
 msgstr "Vastauksen on oltava {0}-{1} merkkiä pitkä"
 
-#: templates/contestrunning.html:38
+#: templates/contestrunning.html:40
 msgid "Allowed characters are {0}-{1} and {2}"
 msgstr "Sallitut merkit ovat {0}-{1} ja {2}"
 
-#: templates/contestrunning.html:39
+#: templates/contestrunning.html:41
 msgid "Allowed characters are {0}-{1}"
 msgstr "Sallitut merkit ovat {0}-{1}"
 
-#: templates/contestrunning.html:40
+#: templates/contestrunning.html:42
 msgid "Allowed characters are {0}"
 msgstr "Sallitut merkit ovat {0}"
 
-#: templates/contestrunning.html:41
+#: templates/contestrunning.html:43
 msgid "All characters must be different"
 msgstr "Kaikkien merkkien on oltava erilaisia"
 
-#: templates/conteststart.html:7
+#: templates/conteststart.html:8
 msgid "Start contest"
 msgstr "Aloita kilpailu"
 
@@ -363,11 +381,11 @@ msgstr ""
 "Alkamis- ja päättymisaika määräytyvät palvelimen ajan mukaan.\n"
 "Palvelimen aika nyt on %(now)s."
 
-#: templates/create.html:27
+#: templates/create.html:28
 msgid "Create contest"
 msgstr "Luo kilpailu"
 
-#: templates/edit.html:10 templates/editpuzzles.html:16
+#: templates/edit.html:11 templates/editpuzzles.html:17
 msgid "Submit changes"
 msgstr "Lähetä muutokset"
 

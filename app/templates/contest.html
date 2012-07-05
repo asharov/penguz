@@ -5,6 +5,19 @@
   <h2>{{contest.name}}</h2>
   <p>{{contest.description}}</p>
   <hr>
+    <noscript>
+      <p class="extra-information">
+	{% blocktrans %}
+	Using a Javascript-capable browser and turning on Javascript
+	is recommended, as then your remaining contest time is updated
+	continuously, and some basic syntax checks are performed on
+	your answers to eliminate certain typos. But Javascript is not
+	necessary; you can participate fully in the contest without it
+	enabled.
+	{% endblocktrans %}
+      </p>
+      <hr>
+    </noscript>
   <p class="extra-information">
     {% blocktrans %}
     The current server time is provided to help determine the exact
