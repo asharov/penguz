@@ -1,6 +1,5 @@
 from django.db import models
 from django_countries import CountryField
-from django.contrib import admin
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -46,8 +45,6 @@ class Contest(models.Model):
             self.slug = slugify(self.name)
         super(Contest, self).save(*args, **kwargs)
 
-admin.site.register(Contest)
-
 class Puzzle(models.Model):
     contest = models.ForeignKey(Contest)
     number = models.PositiveIntegerField()
@@ -64,8 +61,6 @@ class Puzzle(models.Model):
     def __unicode__(self):
         return self.name
 
-admin.site.register(Puzzle)
-
 class Participation(models.Model):
     user = models.ForeignKey(User)
     contest = models.ForeignKey(Contest)
@@ -75,8 +70,6 @@ class Participation(models.Model):
     def __unicode__(self):
         return u"{0} at {1}".format(self.user.get_full_name(),
                                    self.contest.name)
-
-admin.site.register(Participation)
 
 class Answer(models.Model):
     participation = models.ForeignKey(Participation)
@@ -90,8 +83,6 @@ class Answer(models.Model):
     def __unicode__(self):
         return u"Answer of {0} to {1}".format(self.participation.user.get_full_name(),
                                              self.puzzle.name)
-    
-admin.site.register(Answer)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -99,5 +90,3 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
-
-admin.site.register(UserProfile)
