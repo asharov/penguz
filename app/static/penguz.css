@@ -42,6 +42,10 @@
     color: Blue;
 }
 
+.login-area span, .login-area a {
+    margin: 0px 3px;
+}
+
 #page-content {
     margin-left: 15%;
 }
