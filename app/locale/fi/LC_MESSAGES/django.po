@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-05 22:39+0200\n"
-"PO-Revision-Date: 2012-07-05 22:41+0200\n"
+"POT-Creation-Date: 2012-07-31 00:48+0200\n"
+"PO-Revision-Date: 2012-07-31 01:00+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Koko nimi"
 msgid "Nationality"
 msgstr "Kansalaisuus"
 
-#: forms.py:18 models.py:31 templates/contest.html:44
+#: forms.py:18 models.py:30 templates/contest.html:44
 msgid "Password"
 msgstr "Salasana"
 
@@ -81,59 +81,59 @@ msgid "First allowed character must come before the last allowed character"
 msgstr ""
 "Ensimmäisen sallitun merkin on tultava ennen viimeistä sallittua merkkiä"
 
-#: models.py:21
+#: models.py:20
 msgid "Contest name"
 msgstr "Kilpailun nimi"
 
-#: models.py:23
+#: models.py:22
 msgid "Description"
 msgstr "Kuvaus"
 
-#: models.py:25
+#: models.py:24
 msgid "Instruction booklet"
 msgstr "Ohjeet"
 
-#: models.py:28 templates/contest.html:40
+#: models.py:27 templates/contest.html:40
 msgid "Contest booklet"
 msgstr "Kilpailutehtävät"
 
-#: models.py:32
+#: models.py:31
 msgid "Contest start time"
 msgstr "Kilpailun alkamisaika"
 
-#: models.py:33
+#: models.py:32
 msgid "Contest end time"
 msgstr "Kilpailun päättymisaika"
 
-#: models.py:34
+#: models.py:33
 msgid "Contest duration in minutes"
 msgstr "Kilpailun kesto minuuteissa"
 
-#: models.py:35
+#: models.py:34
 msgid "Contest country (if applicable)"
 msgstr "Kilpailumaa (jos tarpeen)"
 
-#: models.py:36
+#: models.py:35
 msgid "Number of puzzles"
 msgstr "Tehtävien lukumäärä"
 
-#: models.py:54
+#: models.py:51
 msgid "Puzzle name"
 msgstr "Tehtävän nimi"
 
-#: models.py:55
+#: models.py:52
 msgid "Available points"
 msgstr "Saatavat pisteet"
 
-#: models.py:56
+#: models.py:53
 msgid "Solution"
 msgstr "Ratkaisu"
 
-#: models.py:57
+#: models.py:54
 msgid "Number of rows in solution"
 msgstr "Ratkaisun rivien määrä"
 
-#: models.py:58
+#: models.py:55
 msgid "Names of solution rows"
 msgstr "Ratkaisun rivien nimet"
 
@@ -141,11 +141,11 @@ msgstr "Ratkaisun rivien nimet"
 msgid "Username already exists"
 msgstr "Käyttäjätunnus on jo olemassa"
 
-#: views.py:163
+#: views.py:167
 msgid "You are not yet allowed to see the results of this contest"
 msgstr "Et saa vielä nähdä tämän kilpailun tuloksia"
 
-#: views.py:249 views.py:276 views.py:296
+#: views.py:253 views.py:280 views.py:300
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -240,11 +240,11 @@ msgstr ""
 "Palvelimen aika auttaa määrittämään milloin varsinainen kilpailuaika\n"
 "on. Se päivittyy ainoastaan sivun uudelleenlatauksella."
 
-#: templates/contest.html:29 templates/index.html:43
+#: templates/contest.html:29 templates/index.html:55
 msgid "Contest period starts"
 msgstr "Kilpailuaika alkaa"
 
-#: templates/contest.html:30 templates/index.html:27
+#: templates/contest.html:30 templates/index.html:39
 msgid "Contest period ends"
 msgstr "Kilpailuaika päättyy"
 
@@ -252,7 +252,7 @@ msgstr "Kilpailuaika päättyy"
 msgid "Current server time"
 msgstr "Palvelimen aika nyt"
 
-#: templates/contest.html:35
+#: templates/contest.html:35 templates/help.html:5
 msgid "Instructions"
 msgstr "Ohjeet"
 
@@ -389,20 +389,91 @@ msgstr "Luo kilpailu"
 msgid "Submit changes"
 msgstr "Lähetä muutokset"
 
-#: templates/index.html:5
-msgid "Available contests"
-msgstr "Kilpailuluettelo"
-
-#: templates/index.html:8
+#: templates/help.html:7
 msgid ""
 "\n"
-"    Below is a list of all contests on this site.\n"
+"    All the contests on this site have a common format. There is a\n"
+"    contest booklet that is intended to be printed out, and each\n"
+"    puzzle in it solved on paper. Each puzzle has an answer key, which\n"
+"    is extracted from the solved puzzle and submitted on the contest\n"
+"    page of the site. A separate instruction booklet can be downloaded\n"
+"    in advance to see the types of puzzles in the contest and how the\n"
+"    answer keys are formed. The actual contest booklet will also be\n"
+"    available prior to the contest, but it is protected by a password\n"
+"    to prevent contestants from seeing the puzzles in advance.\n"
 "    "
 msgstr ""
 "\n"
-"Alla on luettelo kaikista tämän sivuston kilpailuista."
+"Kilpailut tällä sivustolla noudattavat kaikki samaa kaavaa.\n"
+"Kilpailutehtävät ovat kilpailuvihkosessa, joka on tarkoitus tulostaa\n"
+"ja jokainen tehtävä ratkaista paperilla. Kullakin tehtävällä on\n"
+"ratkaisuavain, joka poimitaan ratkaistusta tehtävästä ja lähetetään\n"
+"kilpailun sivulla. Erillinen ohjevihkonen on saatavilla etukäteen ja\n"
+"sisältää tehtävätyypit sekä ohjeet kuinka ratkaisuavain muodostetaan\n"
+"ratkaistusta tehtävästä. Varsinainen kilpailuvihkonen on myös\n"
+"saatavilla ennen kilpailua, mutta se on suojattu salasanalla, jotta\n"
+"kilpailijat eivät näkisi tehtäviä etukäteen."
 
-#: templates/index.html:12
+#: templates/help.html:20
+msgid ""
+"\n"
+"    Each contest has a period during which it is available for\n"
+"    solving, often around a few days. At any point during this time, a\n"
+"    contestant may request the password for the contest booklet on the\n"
+"    contest page, which starts the contest for that contestant. After\n"
+"    starting, there is a specific time available for solving, usually\n"
+"    on the order of a couple of hours. During this time, answer keys\n"
+"    may be submitted for the puzzles, any number at a time and as many\n"
+"    times as desired. Submissions are not accepted after the contest\n"
+"    period ends, even if the contestant has not spent the whole\n"
+"    allowed duration, so it is recommended to begin the contest well\n"
+"    in advance of the period's end.\n"
+"    "
+msgstr ""
+"\n"
+"Kullakin kilpailulla on kilpailuaika, jolloin se on saatavilla\n"
+"ratkaistavaksi, yleensä muutama päivä. Kilpailija voi koska tahansa\n"
+"tänä aikana hakea kilpailuvihkosen salasanan kilpailun sivulta, mikä\n"
+"aloittaa kilpailun. Tämän jälkeen kilpailun ratkontaan on\n"
+"käytettävissä tietty aika, yleensä parisen tuntia, minkä aikana\n"
+"tehtävien ratkaisuavaimet voi lähettää. Ratkaisuja voi lähettää yhden\n"
+"tai useampia kerrallaan ja niin monta kertaa kuin haluaa. Ratkaisuja\n"
+"ei hyväksytä kilpailuajan päättymisen jälkeen, vaikka kilpailija ei\n"
+"olisikaan käyttänyt kaikkea käytettävissä olevaa aikaa. On siis\n"
+"suositeltavaa aloittaa kilpailu hyvissä ajoin ennen kilpailuajan\n"
+"loppua."
+
+#: templates/index.html:7
+msgid "Available contests"
+msgstr "Kilpailuluettelo"
+
+#: templates/index.html:9
+#, python-format
+msgid ""
+"\n"
+"    Welcome to this puzzle contest site. All the contests available on\n"
+"    this site are listed below. See the <a href=\"%(help_url)s\">Help\n"
+"    page</a> for instructions on participating in the contests.\n"
+"    "
+msgstr ""
+"\n"
+"Tervetuloa tälle puzzlekilpailusivustolle. Sivuston kilpailut on\n"
+"listattu alla. <a href=\"%(help_url)s\">Ohjesivu</a> selostaa kilpailun\n"
+"kulun."
+
+#: templates/index.html:15
+#, python-format
+msgid ""
+"\n"
+"    You need to be <a href=\"%(login_url)s\">logged in</a> to\n"
+"    participate in the contests.\n"
+"    "
+msgstr ""
+"\n"
+"Sinun on <a href=\"%(login_url)s\">kirjauduttava sisään</a> voidaksesi\n"
+"osallistua kilpailuihin."
+
+#: templates/index.html:24
 msgid ""
 "\n"
 "    There are currently no contests on this site.\n"
@@ -411,15 +482,15 @@ msgstr ""
 "\n"
 "Tällä sivustolla ei ole yhtään kilpailua."
 
-#: templates/index.html:18
+#: templates/index.html:30
 msgid "Current contests"
 msgstr "Käynnissä olevat kilpailut"
 
-#: templates/index.html:34
+#: templates/index.html:46
 msgid "Upcoming contests"
 msgstr "Tulossa olevat kilpailut"
 
-#: templates/index.html:50
+#: templates/index.html:62
 msgid "Past contests"
 msgstr "Päättyneet kilpailut"
 
@@ -462,7 +533,7 @@ msgstr "Muokkaa tehtäviä"
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
-#: templates/pagebody.html:14 templates/registration/login.html:17
+#: templates/pagebody.html:14 templates/registration/login.html:25
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
@@ -481,6 +552,10 @@ msgstr "Omat kilpailut"
 #: templates/pagebody.html:30
 msgid "Create a new contest"
 msgstr "Luo uusi kilpailu"
+
+#: templates/pagebody.html:32
+msgid "Help"
+msgstr "Ohjeet"
 
 #: templates/results.html:10
 msgid "Others"
@@ -506,7 +581,21 @@ msgstr "Pisteet"
 msgid "Time"
 msgstr "Aika"
 
-#: templates/registration/login.html:7
+#: templates/registration/login.html:8
+#, python-format
+msgid ""
+"\n"
+"    Enter your username and password below. If you do not yet have an\n"
+"    account on this site, you will need to <a\n"
+"    href=\"%(register_url)s\">register</a> first.\n"
+"    "
+msgstr ""
+"\n"
+"Syötä käyttäjätunnuksesi ja salasanasi kirjautuaksesi sisään. Jos\n"
+"sinulla ei ole vielä tunnusta tällä sivustolla, sinun on ensin <a\n"
+"href=\"%(register_url)s\">rekisteröidyttävä</a>."
+
+#: templates/registration/login.html:15
 msgid ""
 "\n"
 "    Logging in uses cookies, so they need to be allowed for this site.\n"

@@ -2,18 +2,30 @@
 {% load i18n %}
 
 {% block pagecontent %}
+{% url app.views.help as help_url %}
+{% url django.contrib.auth.views.login as login_url %}
   <h2>{% trans "Available contests" %}</h2>
   <p>
-    {% if running_contest_list or future_contest_list or past_contest_list %}
     {% blocktrans %}
-    Below is a list of all contests on this site.
+    Welcome to this puzzle contest site. All the contests available on
+    this site are listed below. See the <a href="{{help_url}}">Help
+    page</a> for instructions on participating in the contests.
     {% endblocktrans %}
-    {% else %}
+    {% if not user.is_authenticated %}
     {% blocktrans %}
-    There are currently no contests on this site.
+    You need to be <a href="{{login_url}}">logged in</a> to
+    participate in the contests.
     {% endblocktrans %}
     {% endif %}
   </p>
+    {% if not running_contest_list and not future_contest_list and not past_contest_list %}
+  <hr>
+    <p>
+    {% blocktrans %}
+    There are currently no contests on this site.
+    {% endblocktrans %}
+    </p>
+    {% endif %}
 {% if running_contest_list %}
   <h3>{% trans "Current contests" %}</h3>
   <dl>

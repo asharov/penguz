@@ -29,6 +29,7 @@
 	  {% if perms.app.add_contest %}
 	  <li><a href="/create">{% trans "Create a new contest" %}</a></li>
 	  {% endif %}
+	  <li><a href="{% url app.views.help %}">{% trans "Help" %}</a></li>
 	</ul>
       </div>
       <div id="page-content">

@@ -3,6 +3,14 @@
 
 {% block loginarea %}{% endblock %}
 {% block pagecontent %}
+{% url app.views.register as register_url %}
+  <p>
+    {% blocktrans %}
+    Enter your username and password below. If you do not yet have an
+    account on this site, you will need to <a
+    href="{{register_url}}">register</a> first.
+    {% endblocktrans %}
+  </p>
   <p>
     {% blocktrans %}
     Logging in uses cookies, so they need to be allowed for this site.

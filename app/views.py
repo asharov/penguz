@@ -98,6 +98,10 @@ def own(request):
                                 'complete_contests': complete_contests },
                               context_instance=RequestContext(request))
 
+def help(request):
+    return render_to_response('help.html',
+                              context_instance=RequestContext(request))
+
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)

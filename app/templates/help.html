@@ -1,0 +1,34 @@
+{% extends "pagebody.html" %}
+{% load i18n %}
+
+{% block pagecontent %}
+  <h2>{% trans "Instructions" %}</h2>
+  <p>
+    {% blocktrans %}
+    All the contests on this site have a common format. There is a
+    contest booklet that is intended to be printed out, and each
+    puzzle in it solved on paper. Each puzzle has an answer key, which
+    is extracted from the solved puzzle and submitted on the contest
+    page of the site. A separate instruction booklet can be downloaded
+    in advance to see the types of puzzles in the contest and how the
+    answer keys are formed. The actual contest booklet will also be
+    available prior to the contest, but it is protected by a password
+    to prevent contestants from seeing the puzzles in advance.
+    {% endblocktrans %}
+  </p>
+  <p>
+    {% blocktrans %}
+    Each contest has a period during which it is available for
+    solving, often around a few days. At any point during this time, a
+    contestant may request the password for the contest booklet on the
+    contest page, which starts the contest for that contestant. After
+    starting, there is a specific time available for solving, usually
+    on the order of a couple of hours. During this time, answer keys
+    may be submitted for the puzzles, any number at a time and as many
+    times as desired. Submissions are not accepted after the contest
+    period ends, even if the contestant has not spent the whole
+    allowed duration, so it is recommended to begin the contest well
+    in advance of the period's end.
+    {% endblocktrans %}
+  </p>
+{% endblock %}
