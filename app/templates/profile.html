@@ -10,4 +10,8 @@
     <tr><th>{% trans "Nationality" %}</th><td>{{profile.country.name}}</td></tr>
     <tr><th>{% trans "Organizer" %}</th><td>{{organizer}}</td></tr>
   </table>
+
+  <p>
+    <a href="{% url app.views.editprofile %}">{% trans "Edit profile" %}</a>
+  </p>
 {% endblock %}

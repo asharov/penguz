@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.translation import ugettext as _
 
 from penguz.app.models import Contest, Puzzle, Participation, Answer, UserProfile
-from penguz.app.forms import RegisterForm, AnswerForm, ContestForm, PuzzleForm, ContestEditForm
+from penguz.app.forms import RegisterForm, ProfileForm, AnswerForm, ContestForm, PuzzleForm, ContestEditForm
 
 logger = logging.getLogger(__name__)
 
@@ -108,6 +108,27 @@ def profile(request):
     return render_to_response('profile.html',
                               { 'profile': prof,
                                 'organizer': _('Yes') if request.user.has_perm('app.add_contest') else _('No') },
+                              context_instance=RequestContext(request))
+
+@user_passes_test(lambda u: u.is_authenticated())
+def editprofile(request):
+    form = ProfileForm(request.POST or None)
+    if form.is_valid():
+        data = form.cleaned_data
+        if data.get('country'):
+            profile = UserProfile.objects.get(user=request.user)
+            profile.country = data['country']
+            profile.save()
+        if data.get('name'):
+            request.user.first_name = data['name']
+        if data.get('email'):
+            request.user.email = data['email']
+        if data.get('password'):
+            request.user.set_password(data['password'])
+        request.user.save()
+        return HttpResponseRedirect(reverse('app.views.profile'))
+    return render_to_response('editprofile.html',
+                              { 'form': form },
                               context_instance=RequestContext(request))
 
 def contest(request, contest_id):

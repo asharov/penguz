@@ -41,6 +41,18 @@ class RegisterForm(forms.Form):
         user.save()
         profile.save()
 
+class ProfileForm(RegisterForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields.pop('username')
+        self.fields.pop('organizer')
+        self.fields['email'].required = False
+        self.fields['name'].required = False
+        self.fields['country'].required = False
+        self.fields['password'].required = False
+        self.fields['repeat_password'].required = False
+
 class AnswerWidget(forms.MultiWidget):
 
     def __init__(self, size=1, names=['Answer'], attrs=None):

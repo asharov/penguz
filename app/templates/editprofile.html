@@ -1,0 +1,21 @@
+{% extends "pagebody.html" %}
+{% load i18n %}
+
+{% block pagecontent %}
+  <h2>{% trans "Edit user profile" %}</h2>
+  <p>
+    {% blocktrans %}
+    Here you can modify your personal information. Only the
+    information that you wish to change needs to be filled in. If you
+    wish to change your password, enter the new password in both
+    password fields.
+    {% endblocktrans %}
+  </p>
+  <form action="{% url app.views.editprofile %}" method="post">
+    {% csrf_token %}
+    <table class="form">
+      {{ form.as_table }}
+    </table>
+    <button name="editprofile" type="submit">{% trans "Submit changes" %}</button>
+  </form>
+{% endblock %}
