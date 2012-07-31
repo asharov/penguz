@@ -102,6 +102,14 @@ def help(request):
     return render_to_response('help.html',
                               context_instance=RequestContext(request))
 
+@user_passes_test(lambda u: u.is_authenticated())
+def profile(request):
+    prof = UserProfile.objects.get(user=request.user)
+    return render_to_response('profile.html',
+                              { 'profile': prof,
+                                'organizer': _('Yes') if request.user.has_perm('app.add_contest') else _('No') },
+                              context_instance=RequestContext(request))
+
 def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)

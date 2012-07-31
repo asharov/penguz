@@ -1,0 +1,13 @@
+{% extends "pagebody.html" %}
+{% load i18n %}
+
+{% block pagecontent %}
+  <h2>{% trans "User profile" %}</h2>
+  <table class="form">
+    <tr><th>{% trans "Username" %}</th><td>{{user.username}}</td></tr>
+    <tr><th>{% trans "Full name" %}</th><td>{{user.get_full_name}}</td></tr>
+    <tr><th>{% trans "Email address" %}</th><td>{{user.email}}</td></tr>
+    <tr><th>{% trans "Nationality" %}</th><td>{{profile.country.name}}</td></tr>
+    <tr><th>{% trans "Organizer" %}</th><td>{{organizer}}</td></tr>
+  </table>
+{% endblock %}

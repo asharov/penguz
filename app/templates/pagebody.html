@@ -9,6 +9,7 @@
   <p class="login-area">
     {% if user.is_authenticated %}
     <span class="username">{{ user.username }}</span>
+    <a href="{% url app.views.profile %}">{% trans "My profile" %}</a>
     <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a>
     {% else %}
     <a href="{% url django.contrib.auth.views.login %}">{% trans "Log in" %}</a>
