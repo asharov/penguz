@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-01 00:49+0200\n"
-"PO-Revision-Date: 2012-08-01 00:50+0200\n"
+"POT-Creation-Date: 2012-08-02 22:22+0200\n"
+"PO-Revision-Date: 2012-08-02 22:23+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -149,11 +149,11 @@ msgstr "Kyllä"
 msgid "No"
 msgstr "Ei"
 
-#: views.py:196
+#: views.py:197
 msgid "You are not yet allowed to see the results of this contest"
 msgstr "Et saa vielä nähdä tämän kilpailun tuloksia"
 
-#: views.py:282 views.py:309 views.py:329
+#: views.py:286 views.py:313 views.py:333
 msgid "You are not allowed to edit this contest"
 msgstr "Et voi muokata tätä kilpailua"
 
@@ -600,7 +600,18 @@ msgstr "Järjestäjä"
 msgid "Edit profile"
 msgstr "Muokkaa tietoja"
 
-#: templates/results.html:10
+#: templates/results.html:8
+msgid ""
+"\n"
+"    The contest period has not ended yet, so additional contestants may\n"
+"    yet appear in the results.\n"
+"    "
+msgstr ""
+"\n"
+"Kilpailuaika ei ole vielä loppunut, joten tuloksiin voi vielä saapua\n"
+"lisää kilpailijoita."
+
+#: templates/results.html:18
 msgid "Others"
 msgstr "Muut"
 

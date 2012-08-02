@@ -195,6 +195,7 @@ def results(request, contest_id):
     if (request.user != contest.organizer and
         not has_ended(now, contest, participations.filter(user=request.user.id))):
         return HttpResponseForbidden(_("You are not yet allowed to see the results of this contest"))
+    preliminary = now <= contest.end_time
     puzzles = list(Puzzle.objects.filter(contest=contest.id))
     country_answers = []
     other_answers = []
@@ -228,11 +229,13 @@ def results(request, contest_id):
     country_answers.sort(key=itemgetter('total_score'), reverse=True)
     other_answers.sort(key=itemgetter('spent_minutes','spent_seconds'))
     other_answers.sort(key=itemgetter('total_score'), reverse=True)
-    return render_to_response('results.html', { 'contest': contest,
-                                                'puzzles': puzzles,
-                                                'country_answers': country_answers,
-                                                'other_answers': other_answers,
-                                                'show_email': contest.organizer == request.user },
+    return render_to_response('results.html',
+                              { 'contest': contest,
+                                'puzzles': puzzles,
+                                'country_answers': country_answers,
+                                'other_answers': other_answers,
+                                'show_email': contest.organizer == request.user,
+                                'preliminary': preliminary },
                               context_instance=RequestContext(request))
 
 def answer(request, contest_id):

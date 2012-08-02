@@ -3,6 +3,14 @@
 
 {% block pagecontent %}
 <h2>{{contest.name}}</h2>
+{% if preliminary %}
+  <p>
+    {% blocktrans %}
+    The contest period has not ended yet, so additional contestants may
+    yet appear in the results.
+    {% endblocktrans %}
+  </p>
+{% endif %}
 {% if contest.country %}
 <hr>
 <h3>{{contest.country.name}}</h3>
