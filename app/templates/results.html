@@ -18,4 +18,10 @@
 <h3>{% trans "Others" %}</h3>
 {% endif %}
 {% include "results_table.html" with answers=other_answers %}
+<p>
+{% blocktrans %}
+Points are displayed for each submitted puzzle, 0 is for wrong
+answers, - when no answer was submitted.
+{% endblocktrans %}
+</p>
 {% endblock %}
