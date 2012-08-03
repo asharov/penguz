@@ -59,6 +59,7 @@ fi.iki.ashar.Penguz = function() {
 	allowed += array[1];
 	parsed.extraChars = array[1].split('').join(', ');
 	if (allowed) {
+	    allowed = allowed.replace(/\\/, "\\\\");
 	    parsed.pattern = new RegExp('^[' + allowed + ']*$', 'i');
 	} else {
 	    parsed.pattern = new RegExp('.*');
