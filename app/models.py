@@ -59,7 +59,7 @@ class Puzzle(models.Model):
         ordering = ["contest", "number"]
 
     def __unicode__(self):
-        return self.name
+        return u"{0} in {1}".format(self.name, self.contest)
 
 class Participation(models.Model):
     user = models.ForeignKey(User)
@@ -68,8 +68,7 @@ class Participation(models.Model):
     last_submission = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return u"{0} at {1}".format(self.user.get_full_name(),
-                                   self.contest.name)
+        return u"{0} at {1}".format(self.user, self.contest)
 
 class Answer(models.Model):
     participation = models.ForeignKey(Participation)
@@ -81,12 +80,12 @@ class Answer(models.Model):
         ordering = ["puzzle"]
 
     def __unicode__(self):
-        return u"Answer of {0} to {1}".format(self.participation.user.get_full_name(),
-                                             self.puzzle.name)
+        return u"Answer of {0} to {1}".format(self.participation.user,
+                                              self.puzzle)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     country = CountryField(blank=True)
 
     def __unicode__(self):
-        return self.user.username
+        return self.user.__unicode__()
