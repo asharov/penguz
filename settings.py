@@ -1,6 +1,10 @@
 # Django settings for penguz project.
 
+import sys
 import os
+import dj_database_url
+
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
