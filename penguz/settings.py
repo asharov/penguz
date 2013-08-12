@@ -10,7 +10,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Jaakko Kangasharju', 'ashar+penguz@iki.fi'),
 )
 
 MANAGERS = ADMINS
@@ -154,9 +154,8 @@ LOGGING = {
         },
         'actions': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
+            'class': 'logging.StreamHandler',
             'formatter': 'timestamp',
-            'filename': os.path.join('/', 'var', 'log', 'penguz', 'actions.log'),
         }
     },
     'loggers': {
