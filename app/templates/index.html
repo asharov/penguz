@@ -2,8 +2,8 @@
 {% load i18n %}
 
 {% block pagecontent %}
-{% url app.views.help as help_url %}
-{% url django.contrib.auth.views.login as login_url %}
+{% url 'app.views.help' as help_url %}
+{% url 'django.contrib.auth.views.login' as login_url %}
   <h2>{% trans "Available contests" %}</h2>
   <p>
     {% blocktrans %}

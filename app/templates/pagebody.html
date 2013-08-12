@@ -9,11 +9,11 @@
   <p class="login-area">
     {% if user.is_authenticated %}
     <span class="username">{{ user.username }}</span>
-    <a href="{% url app.views.profile %}">{% trans "My profile" %}</a>
-    <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a>
+    <a href="{% url 'app.views.profile' %}">{% trans "My profile" %}</a>
+    <a href="{% url 'django.contrib.auth.views.logout' %}">{% trans "Log out" %}</a>
     {% else %}
-    <a href="{% url django.contrib.auth.views.login %}">{% trans "Log in" %}</a>
-    <a href="{% url app.views.register %}">{% trans "Register" %}</a>
+    <a href="{% url 'django.contrib.auth.views.login' %}">{% trans "Log in" %}</a>
+    <a href="{% url 'app.views.register' %}">{% trans "Register" %}</a>
     {% endif %}
   </p>
   {% endblock %}
@@ -23,14 +23,14 @@
     <div id="container">
       <div id="navigation-bar">
 	<ul>
-	  <li><a href="{% url app.views.index %}">{% trans "Home" %}</a></li>
+	  <li><a href="{% url 'app.views.index' %}">{% trans "Home" %}</a></li>
 	  {% if user.is_authenticated %}
 	  <li><a href="/own">{% trans "My contests" %}</a></li>
 	  {% endif %}
 	  {% if perms.app.add_contest %}
 	  <li><a href="/create">{% trans "Create a new contest" %}</a></li>
 	  {% endif %}
-	  <li><a href="{% url app.views.help %}">{% trans "Help" %}</a></li>
+	  <li><a href="{% url 'app.views.help' %}">{% trans "Help" %}</a></li>
 	</ul>
       </div>
       <div id="page-content">

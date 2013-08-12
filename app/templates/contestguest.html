@@ -2,8 +2,8 @@
 {% load i18n %}
 
 {% block content %}
-{% url django.contrib.auth.views.login as login_url %}
-{% url app.views.register as register_url %}
+{% url 'django.contrib.auth.views.login' as login_url %}
+{% url 'app.views.register' as register_url %}
   <p>
     {% blocktrans %}
     You will need to <a href="{{login_url}}">log in</a> before you can

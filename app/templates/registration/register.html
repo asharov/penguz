@@ -34,7 +34,7 @@
     selection on the left-side menu to create a new contest.
     {% endblocktrans %}
   </p>
-  <form action="{% url app.views.register %}" method="post">
+  <form action="{% url 'app.views.register' %}" method="post">
     {% csrf_token %}
     <table class="form">
       {{ form.as_table }}

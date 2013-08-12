@@ -3,7 +3,7 @@
 
 {% block loginarea %}{% endblock %}
 {% block pagecontent %}
-{% url app.views.register as register_url %}
+{% url 'app.views.register' as register_url %}
   <p>
     {% blocktrans %}
     Enter your username and password below. If you do not yet have an
@@ -16,12 +16,12 @@
     Logging in uses cookies, so they need to be allowed for this site.
     {% endblocktrans %}
   </p>
-  <form action="{% url django.contrib.auth.views.login %}" method="post">
+  <form action="{% url 'django.contrib.auth.views.login' %}" method="post">
     {% csrf_token %}
     <table class="form">
       {{ form.as_table }}
     </table>
-    <input type="hidden" name="next" value="{% url app.views.index %}"/>
+    <input type="hidden" name="next" value="{% url 'app.views.index' %}"/>
       <button name="login" type="submit">{% trans "Log in" %}</button>
   </form>
 {% endblock %}
