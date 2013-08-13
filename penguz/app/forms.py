@@ -95,7 +95,7 @@ class AnswerField(forms.MultiValueField, AnswerSize):
         fields = []
         i = 0
         while i < size:
-            fields.append(forms.CharField(label=names[i], max_length=20))
+            fields.append(forms.CharField(label=names[i], max_length=60))
             i += 1
         super(AnswerField, self).__init__(fields, *args, **kwargs)
 
