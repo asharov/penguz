@@ -114,7 +114,8 @@ class AnswerForm(forms.Form):
         for puzzle in puzzles:
             names = puzzle.solution_row_names.split(',')
             field = AnswerField(puzzle.solution_row_count, names,
-                                label=puzzle.name, required=False)
+                                label=str(puzzle.number) + ". " + puzzle.name,
+                                required=False)
             field.size = puzzle.solution_row_count
             if puzzle.id in answers:
                 field.initial = answers[puzzle.id]
