@@ -17,7 +17,7 @@ urlpatterns = patterns('app.views',
     url(r'^editpuzzles/(?P<contest_id>\d+)/', 'editpuzzles'),
 )
 
-urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^login$', 'login'),
-    url(r'^logout$', 'logout', { 'next_page': '/' }),
+urlpatterns += patterns('',
+    url(r'^logout/?$', 'django.contrib.auth.views.logout', { 'next_page': '/' }),
+    url(r'', include('django.contrib.auth.urls')),
 )

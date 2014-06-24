@@ -3,6 +3,7 @@
 import sys
 import os
 import dj_database_url
+from django.conf import global_settings
 
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
@@ -120,7 +121,12 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'penguz.app.context_processors.admin_email',
+)
+
 INSTALLED_APPS = (
+    'penguz.app',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -132,7 +138,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'penguz.app',
 )
 
 AUTHENTICATION_BACKENDS = (

@@ -4,6 +4,7 @@
 {% block loginarea %}{% endblock %}
 {% block pagecontent %}
 {% url 'app.views.register' as register_url %}
+{% url 'django.contrib.auth.views.password_reset' as password_reset_url %}
   <p>
     {% blocktrans %}
     Enter your username and password below. If you do not yet have an
@@ -24,4 +25,9 @@
     <input type="hidden" name="next" value="{% url 'app.views.index' %}"/>
       <button name="login" type="submit">{% trans "Log in" %}</button>
   </form>
+  <p>
+    <a href="{{password_reset_url}}">
+      {% trans "Forgot your password?" %}
+    </a>
+  </p>
 {% endblock %}
