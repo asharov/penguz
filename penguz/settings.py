@@ -97,6 +97,13 @@ AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = 'penguz'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ['POSTMARK_SMTP_SERVER']
+EMAIL_PORT = 25
+EMAIL_HOST_USER = os.environ['POSTMARK_API_KEY']
+EMAIL_HOST_PASSWORD = os.environ['POSTMARK_API_KEY']
+DEFAULT_FROM_EMAIL = 'ashar+penguz@iki.fi'
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
