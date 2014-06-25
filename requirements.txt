@@ -1,11 +1,13 @@
 Django==1.5.1
 argparse==1.2.1
 bcrypt==1.0.2
+boto==2.10.0
 cffi==0.7.2
 distribute==0.6.34
 dj-database-url==0.2.2
 dj-static==0.0.5
 django-countries==1.5
+django-storages=1.1.8
 django-toolbelt==0.0.1
 gunicorn==17.5
 psycopg2==2.5.1
