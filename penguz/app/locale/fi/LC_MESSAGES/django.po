@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Penguz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-26 01:09+0200\n"
-"PO-Revision-Date: 2014-06-26 01:26+0200\n"
+"POT-Creation-Date: 2014-06-26 01:36+0200\n"
+"PO-Revision-Date: 2014-06-26 01:38+0200\n"
 "Last-Translator: Jaakko Kangasharju <ashar+penguz@iki.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -692,14 +692,20 @@ msgstr ""
 #: templates/registration/password_reset_confirm.html:9
 msgid ""
 "\n"
-"  Enter your new password twice.\n"
+"  Enter your new desired password in both fields, to verify you typed\n"
+"  it correctly.\n"
 "  "
 msgstr ""
 "\n"
-"Syötä uusi salasanasi kahdesti.\n"
+"Syötä haluamasi uusi salasana molempiin kenttiin, jotta voit olla\n"
+"varma syöttäneesi sen oikein.\n"
 "  "
 
-#: templates/registration/password_reset_confirm.html:22
+#: templates/registration/password_reset_confirm.html:19
+msgid "Set new password"
+msgstr "Aseta salasana"
+
+#: templates/registration/password_reset_confirm.html:23
 #, python-format
 msgid ""
 "\n"
@@ -785,7 +791,9 @@ msgstr "Pyydä salasanan uusimista"
 msgid ""
 "\n"
 "Password reset request for %(site_name)s\n"
-msgstr "\nSivuston %(site_name)s salasanan uusiminen\n"
+msgstr ""
+"\n"
+"Sivuston %(site_name)s salasanan uusiminen\n"
 
 #: templates/registration/register.html:7
 msgid ""
