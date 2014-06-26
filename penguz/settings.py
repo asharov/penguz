@@ -7,7 +7,7 @@ from django.conf import global_settings
 
 sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)))
 
-DEBUG = False
+DEBUG = bool(os.environ['DJANGO_DEBUG'])
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
