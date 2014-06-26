@@ -30,6 +30,22 @@ def has_ended(now, contest, participation):
 def format_url(page, contest):
     return "/{0}/{1}/{2}".format(page, contest.id, contest.slug)
 
+def fill_context_with_participation(context, now, participation, contest):
+    spent_time = total_seconds(now - participation[0].start_time)
+    difference = int(contest.duration * 60 - spent_time)
+    puzzles = Puzzle.objects.filter(contest__exact=contest.id)
+    answer_set = Answer.objects.filter(participation=participation[0].id)
+    non_empty_answers = answer_set.exclude(answer='')
+    answers = dict([(answer.puzzle.id, answer.answer) for answer in answer_set])
+    form = AnswerForm(puzzles=puzzles, answers=answers)
+    patterns = puzzles.values('id', 'solution_pattern')
+    context.update({ 'form': form,
+                     'participation': participation[0],
+                     'answer_count': non_empty_answers.count(),
+                     'minutes': difference / 60,
+                     'seconds': '%02d' % (difference % 60),
+                     'patterns': patterns })
+
 def set_answer(participation, key, answer):
     try:
         puzzle = Puzzle.objects.get(id=key)
@@ -135,16 +151,22 @@ def contest(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participation = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
     now = datetime.now()
+    if contest.organizer == request.user:
+        if not participation:
+            participation = [Participation(user=request.user, contest=contest)]
+        participation[0].start_time = now
+        participation[0].save()
     context = { 'contest': contest,
                 'minutes': contest.duration,
                 'seconds': '00',
                 'now': now }
-    if now < contest.start_time:
-        return render_to_response('contest.html',
+    if contest.organizer == request.user:
+        fill_context_with_participation(context, now, participation, contest)
+        return render_to_response('contestauthor.html',
                                   context,
                                   context_instance=RequestContext(request))
-    elif contest.organizer == request.user:
-        return render_to_response('contestauthor.html',
+    elif now < contest.start_time:
+        return render_to_response('contest.html',
                                   context,
                                   context_instance=RequestContext(request))
     elif has_ended(now, contest, participation):
@@ -156,20 +178,7 @@ def contest(request, contest_id):
                                   context,
                                   context_instance=RequestContext(request))
     elif participation:
-        spent_time = total_seconds(now - participation[0].start_time)
-        difference = int(contest.duration * 60 - spent_time)
-        puzzles = Puzzle.objects.filter(contest__exact=contest_id)
-        answer_set = Answer.objects.filter(participation=participation[0].id)
-        non_empty_answers = answer_set.exclude(answer='')
-        answers = dict([(answer.puzzle.id, answer.answer) for answer in answer_set])
-        form = AnswerForm(puzzles=puzzles, answers=answers)
-        patterns = puzzles.values('id', 'solution_pattern')
-        context.update({ 'form': form,
-                         'participation': participation[0],
-                         'answer_count': non_empty_answers.count(),
-                         'minutes': difference / 60,
-                         'seconds': '%02d' % (difference % 60),
-                         'patterns': patterns })
+        fill_context_with_participation(context, now, participation, contest)
         return render_to_response('contestrunning.html',
                                   context,
                                   context_instance=RequestContext(request))
