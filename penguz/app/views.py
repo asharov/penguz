@@ -201,7 +201,8 @@ def results(request, contest_id):
     contest = get_object_or_404(Contest, pk=contest_id)
     participations = Participation.objects.filter(contest=contest.id)
     now = datetime.now()
-    if (request.user != contest.organizer and
+    user_is_organizer = request.user == contest.organizer
+    if (not user_is_organizer and
         not has_ended(now, contest, participations.filter(user=request.user.id))):
         return HttpResponseForbidden(_("You are not yet allowed to see the results of this contest"))
     preliminary = now <= contest.end_time
@@ -209,7 +210,9 @@ def results(request, contest_id):
     country_answers = []
     other_answers = []
     for participation in participations:
-        if not has_ended(now, contest, [participation]):
+        participant_is_organizer = participation.user == contest.organizer
+        if (not has_ended(now, contest, [participation])
+            and (not user_is_organizer or not participant_is_organizer)):
             continue
         answers = list(Answer.objects.filter(participation=participation.id))
         if answers:
