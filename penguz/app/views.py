@@ -190,9 +190,11 @@ def contest(request, contest_id):
 def start(request, contest_id):
     if request.method == 'POST':
         contest = get_object_or_404(Contest, pk=contest_id)
-        logger.info("Start contest {0} {1}".format(request.user, contest))
-        participation = Participation(user=request.user, contest=contest)
-        participation.save()
+        participations = Participation.objects.filter(user=request.user.id).filter(contest=contest.id)
+        if not participations:
+            logger.info("Start contest {0} {1}".format(request.user, contest))
+            participation = Participation(user=request.user, contest=contest)
+            participation.save()
         return HttpResponseRedirect(format_url("contest", contest))
     else:
         raise Http404
